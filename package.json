@@ -1,5 +1,5 @@
 {
-  "name": "mern-heroku-template",
+  "name": "food-supplies",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Stef-Lev/mern-heroku-template.git"
+    "url": "git+https://github.com/Stef-Lev/food-supplies.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Stef-Lev/mern-heroku-template/issues"
+    "url": "https://github.com/Stef-Lev/food-supplies/issues"
   },
-  "homepage": "https://github.com/Stef-Lev/mern-heroku-template#readme",
+  "homepage": "https://github.com/Stef-Lev/food-supplies#readme",
   "dependencies": {
     "body-parser": "^1.19.2",
     "dotenv": "^16.0.0",
