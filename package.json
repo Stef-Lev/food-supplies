@@ -1,5 +1,5 @@
 {
-  "name": "food-supplies",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,8 @@
     "start": "nodemon server.js --ignore client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Stef-Lev/food-supplies.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Stef-Lev/food-supplies/issues"
-  },
   "homepage": "https://github.com/Stef-Lev/food-supplies#readme",
   "dependencies": {
     "body-parser": "^1.19.2",
