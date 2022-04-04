@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 
 function Home() {
@@ -14,17 +14,13 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className="home-page">
       <button onClick={() => setScan(true)}>SCAN</button>
       <button onClick={() => setScan(false)}>CANCEL</button>
       {scan && (
-        <div>
-          {/* <QrReader
-            delay={300}
-            onScan={qrReaderHandleScan}
-            onError={qrReaderHandleError}
-          /> */}
+        <div className="camera-frame">
           <BarcodeScannerComponent
+            width={260}
             onUpdate={barcodeScannerComponentHandleUpdate}
           />
         </div>
@@ -33,7 +29,6 @@ function Home() {
         {logs.map((log) => (
           <div key={log}>{log}</div>
         ))}
-
         <button onClick={() => setLog([])}>CLEAR</button>
       </div>
     </div>
