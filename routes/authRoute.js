@@ -30,7 +30,7 @@ const createUserToken = async (user, code, req, res) => {
   });
 };
 
-exports.registerUser = async (req, res, next) => {
+exports.signupUser = async (req, res, next) => {
   try {
     let { username, password, passwordCheck, fullname } = req.body;
     if (!username || !password || !passwordCheck)

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 
-function Home() {
+function HomePage() {
   const [scan, setScan] = useState(false);
   const [logs, setLog] = useState([]);
 
@@ -35,4 +35,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

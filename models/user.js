@@ -14,7 +14,13 @@ const UserSchema = new Schema({
       message: "Passwords don't match.",
     },
   },
-  lists: [{ type: Schema.Types.ObjectId, ref: "List" }],
+  products: [
+    {
+      title: String,
+      barcode: Number,
+      expirationDate: Date,
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", UserSchema);
