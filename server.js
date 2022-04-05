@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 8080;
 const mongoose = require("mongoose");
 const database = process.env.MONGODB_URI;
 const bodyParser = require("body-parser");
-const userAuth = require("./routes/authRoute");
 const cookieParser = require("cookie-parser");
 const jwtSecret = process.env.JWT_SECRET;
 

@@ -20,7 +20,7 @@ const createUserToken = async (user, code, req, res) => {
     httpOnly: true,
   });
 
-  User.password = undefined;
+  user.password = undefined;
   res.status(code).json({
     status: "success",
     token,
