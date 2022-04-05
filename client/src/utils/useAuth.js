@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import { fetchMethod } from "./fetchMethod";
 
 export default function useAuth() {
   const navigate = useNavigate();
@@ -9,15 +10,15 @@ export default function useAuth() {
   const [error, setError] = useState(null);
 
   const setUserContext = async () => {
-    return await axios
-      .get("/api/auth/user")
+    return await fetchMethod("get", "/api/auth/user")
       .then((res) => {
-        setUser(res.data.currentUser);
+        setUser(res.currentUser);
+        console.log("SETUSER CONTEXT", res);
         navigate("/");
       })
       .catch((err) => {
         console.error(err);
-        setError(err.response.data);
+        setError("ERR", err);
       });
   };
 

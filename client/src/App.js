@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <UserContext.Provider value={(user, setUser, isLoading)}>
+        <UserContext.Provider value={{ user, setUser, isLoading }}>
           <Routes>
             <Route
               exact
