@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
-import Container from "@material-ui/core/Container";
 import useAuth from "../../utils/useAuth";
 
 function LoginPage() {
@@ -20,8 +19,8 @@ function LoginPage() {
   };
 
   return (
-    <div className="login-page">
-      <Container maxWidth="sm" className="main-container">
+    <div>
+      <div>
         <h3 className="route-title">LOGIN</h3>
         <div>
           <form>
@@ -65,7 +64,7 @@ function LoginPage() {
             </Button>
           </form>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

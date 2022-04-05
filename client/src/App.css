@@ -4,3 +4,7 @@
 .home-page .camera-frame video {
   border-radius: 20px;
 }
+.main-container {
+  margin-top: 64px;
+  padding: 20px;
+}
