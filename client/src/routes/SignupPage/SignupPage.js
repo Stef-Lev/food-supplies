@@ -23,7 +23,6 @@ function SignupPage() {
     clearError();
     setUser({ ...user, [field]: event.target.value });
   };
-  console.log(user);
 
   return (
     <div className="login-page">

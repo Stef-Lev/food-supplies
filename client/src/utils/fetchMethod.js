@@ -9,7 +9,7 @@ export const fetchMethod = (reqType, url, id = "", body = "") => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
-      }).then((response) => response.json());
+      }).then((res) => res.json());
     case "update":
       return fetch(url + id, {
         method: "PUT",

@@ -10,7 +10,6 @@ export default function useFindUser() {
     async function findUser() {
       await fetchMethod("get", "/api/auth/user")
         .then((res) => {
-          console.log("RES", res);
           setUser(res.currentUser);
           setLoading(false);
         })
