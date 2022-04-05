@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { UserContext } from "../context/UserContext";
 
 export default function useAuth() {
@@ -8,7 +9,8 @@ export default function useAuth() {
   const [error, setError] = useState(null);
 
   const setUserContext = async () => {
-    return await fetch("/api/auth/user")
+    return await axios
+      .get("/api/auth/user")
       .then((res) => {
         setUser(res.data.currentUser);
         navigate("/");
@@ -22,15 +24,13 @@ export default function useAuth() {
   const signupUser = async (data) => {
     const { username, fullname, password, passwordCheck } = data;
 
-    return fetch("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify({
+    return axios
+      .post("/api/auth/signup", {
         username,
         fullname,
         password,
         passwordCheck,
-      }),
-    })
+      })
       .then(async () => {
         await setUserContext();
         navigate("/");
@@ -44,13 +44,11 @@ export default function useAuth() {
   //login
   const loginUser = async (data) => {
     const { username, password } = data;
-    return fetch("/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
+    return axios
+      .post("/api/auth/login", {
         username,
         password,
-      }),
-    })
+      })
       .then(async () => {
         await setUserContext();
       })

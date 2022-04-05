@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { fetchMethod } from "./fetchMethod";
 
 export default function useFindUser() {
   const [user, setUser] = useState(null);
@@ -7,9 +8,10 @@ export default function useFindUser() {
 
   useEffect(() => {
     async function findUser() {
-      await fetch("/api/auth/user")
+      await fetchMethod("get", "/api/auth/user")
         .then((res) => {
-          setUser(res.data.currentUser);
+          console.log("RES", res);
+          setUser(res.currentUser);
           setLoading(false);
         })
         .catch((err) => {

@@ -10,7 +10,7 @@ import useFindUser from "./utils/useFindUser";
 
 function App() {
   const { user, setUser, isLoading } = useFindUser();
-  console.log(user);
+  console.log("USER_CONTEXT", user);
   return (
     <div className="App">
       <Router>

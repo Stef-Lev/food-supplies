@@ -23,9 +23,6 @@ export const fetchMethod = (reqType, url, id = "", body = "") => {
         method: "DELETE",
       }).then((res) => res.json());
     default:
-      return {
-        status: "error",
-        msg: "Fetch method is wrong",
-      };
+      return fetch(url + id).then((res) => res.json());
   }
 };

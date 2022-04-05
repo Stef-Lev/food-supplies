@@ -9,6 +9,7 @@ function PrivateRoutePage({ children }) {
   if (isLoading) {
     return <Loader />;
   }
+  console.log(user ? "USER EXISTS" : "NO_USER");
   return user ? children : <Navigate to="/login" />;
 }
 
