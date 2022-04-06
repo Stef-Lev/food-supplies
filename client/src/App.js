@@ -6,6 +6,7 @@ import PrivateRoutePage from "./routes/PrivateRoutePage/PrivateRoutePage";
 import RedirectLoginPage from "./routes/RedirectLoginPage/RedirectLoginPage";
 import SignupPage from "./routes/SignupPage/SignupPage";
 import AddProductsPage from "./routes/AddProductsPage/AddProductsPage";
+import ProductsListPage from "./routes/ProductsListPage/ProductsListPage";
 import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "./context/UserContext";
@@ -36,6 +37,15 @@ function App() {
                 element={
                   <PrivateRoutePage>
                     <AddProductsPage />
+                  </PrivateRoutePage>
+                }
+              />
+              <Route
+                exact
+                path="/user/:id/list"
+                element={
+                  <PrivateRoutePage>
+                    <ProductsListPage />
                   </PrivateRoutePage>
                 }
               />

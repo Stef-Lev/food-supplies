@@ -1,8 +1,12 @@
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
+const Product = require("../models/product");
 
-exports.add = catchAsync(async (req, res) => {
-  const user = new User(req.body);
+exports.addListProduct = catchAsync(async (req, res) => {
+  const { barcode } = req.body;
+  const user = await User.findById(req.params.id);
+  const product = await Product.find({ barcode: barcode });
+  user.list.push({ product, expires });
   await user.save();
-  res.json(user);
+  res.status(200).json({ user });
 });

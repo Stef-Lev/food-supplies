@@ -6,7 +6,7 @@ const ProductSchema = new Schema({
     type: String,
   },
   barcode: {
-    type: Number,
+    type: String,
   },
   imageUrl: {
     type: String,
