@@ -8,9 +8,8 @@ const ProductSchema = new Schema({
   barcode: {
     type: Number,
   },
-  image: {
-    data: Buffer,
-    contentType: String,
+  imageUrl: {
+    type: String,
   },
 });
 

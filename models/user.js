@@ -15,11 +15,10 @@ const UserSchema = new Schema({
       message: "Passwords don't match.",
     },
   },
-  products: [
+  list: [
     {
-      title: String,
-      barcode: Number,
-      expirationDate: Date,
+      product: { type: Schema.Types.ObjectId, ref: "Product" },
+      expires: Date,
     },
   ],
 });
