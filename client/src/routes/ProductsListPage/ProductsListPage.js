@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductItem from "../../components/ProductItem/ProductItem";
+import AddIconButton from "../../components/AddIconButton/AddIconButton";
 import { UserContext } from "../../context/UserContext";
 import styles from "./ProductsListPage.module.css";
 
@@ -13,6 +14,7 @@ function ProductsListPage() {
       {products.map((item, index) => (
         <ProductItem key={index + 1} item={item} />
       ))}
+      <AddIconButton />
     </div>
   );
 }
