@@ -42,7 +42,7 @@ function App() {
               />
               <Route
                 exact
-                path="/user/:id/list"
+                path="/user/list"
                 element={
                   <PrivateRoutePage>
                     <ProductsListPage />

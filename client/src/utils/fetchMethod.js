@@ -1,7 +1,7 @@
-export const fetchMethod = (reqType, url, id = "", body = "") => {
+export const fetchMethod = (reqType, url, body = "") => {
   switch (reqType) {
     case "get":
-      return fetch(url + id).then((res) => res.json());
+      return fetch(url).then((res) => res.json());
     case "post":
       return fetch(url, {
         method: "POST",
@@ -11,7 +11,7 @@ export const fetchMethod = (reqType, url, id = "", body = "") => {
         body: JSON.stringify(body),
       }).then((res) => res.json());
     case "update":
-      return fetch(url + id, {
+      return fetch(url, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -19,10 +19,10 @@ export const fetchMethod = (reqType, url, id = "", body = "") => {
         body: JSON.stringify(body),
       }).then((res) => res.json());
     case "delete":
-      return fetch(url + id, {
+      return fetch(url, {
         method: "DELETE",
       }).then((res) => res.json());
     default:
-      return fetch(url + id).then((res) => res.json());
+      return fetch(url).then((res) => res.json());
   }
 };

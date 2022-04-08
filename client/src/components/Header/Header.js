@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -13,9 +14,17 @@ import HomeIcon from "@material-ui/icons/Home";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import QueueIcon from "@material-ui/icons/Queue";
 
+const useStyles = makeStyles({
+  header: {
+    backgroundColor: "#f7717d",
+    color: "#fff",
+  },
+});
+
 const Header = () => {
   const [mobileView, setMobileView] = useState(false);
   const { user } = useContext(UserContext);
+  const classes = useStyles();
   // const { logoutUser } = useLogout();
 
   const headerData = [
@@ -32,7 +41,7 @@ const Header = () => {
     {
       label: "Products List",
       icon: <FormatListNumberedIcon />,
-      href: `/user/${user._id}/list`,
+      href: `/user/list`,
     },
     {
       label: "Logout",
@@ -104,7 +113,7 @@ const Header = () => {
 
   console.log("USER", user);
   return (
-    <AppBar className="app-bar">
+    <AppBar className={classes.header}>
       {mobileView ? displayDesktop() : displayDesktop()}
     </AppBar>
   );
