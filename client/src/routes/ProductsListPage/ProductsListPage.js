@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import AddIconButton from "../../components/AddIconButton/AddIconButton";
 import AddProductModal from "../../components/AddProductModal/AddProductModal";
@@ -16,6 +16,7 @@ function ProductsListPage() {
     barcode: "",
     expires: "",
   });
+  const [userList, setUserList] = useState(user.list);
 
   const handleScannedResult = (error, result) => {
     if (result) {
@@ -45,15 +46,34 @@ function ProductsListPage() {
 
   const addProductToList = () => {
     fetchMethod("post", `/api/user/${user._id}/addproduct`, product).then(
-      (res) => console.log(res)
+      () => {
+        handleModalClose();
+        fetchMethod("get", `/api/user/${user._id}`).then((item) =>
+          setUserList(item.user.list)
+        );
+      }
+    );
+  };
+
+  const removeProductFromList = (id) => {
+    fetchMethod("delete", `/api/user/${user._id}/deleteproduct/${id}`).then(
+      (res) => {
+        fetchMethod("get", `/api/user/${user._id}`).then((item) =>
+          setUserList(item.user.list)
+        );
+      }
     );
   };
 
   return (
     <>
       <div className={styles.column}>
-        {user?.list.map((item, index) => (
-          <ProductItem key={index + 1} item={item} />
+        {userList?.map((item, index) => (
+          <ProductItem
+            key={index + 1}
+            item={item}
+            onClick={removeProductFromList}
+          />
         ))}
       </div>
       <AddIconButton handleClick={handleModalOpen} />

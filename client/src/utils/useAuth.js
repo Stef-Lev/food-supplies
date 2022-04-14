@@ -23,7 +23,7 @@ export default function useAuth() {
   const signupUser = async (data) => {
     const { username, fullname, password, passwordCheck } = data;
 
-    return fetchMethod("post", "/api/auth/signup", "", {
+    return fetchMethod("post", "/api/auth/signup", {
       username,
       fullname,
       password,
@@ -42,7 +42,7 @@ export default function useAuth() {
   //login
   const loginUser = async (data) => {
     const { username, password } = data;
-    return fetchMethod("post", "/api/auth/login", "", {
+    return fetchMethod("post", "/api/auth/login", {
       username,
       password,
     })
