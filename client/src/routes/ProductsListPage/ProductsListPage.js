@@ -33,6 +33,12 @@ function ProductsListPage() {
     ? results.filter((item) => item.score < 0.5).map((item) => item.item)
     : userList;
 
+  useEffect(() => {
+    fetchMethod("get", `/api/user/${user._id}`).then((item) =>
+      setUserList(item.user.list)
+    );
+  }, []);
+
   const handleScannedResult = (error, result) => {
     if (result) {
       setProduct({ ...product, barcode: result.text });

@@ -7,6 +7,7 @@ import RedirectLoginPage from "./routes/RedirectLoginPage/RedirectLoginPage";
 import SignupPage from "./routes/SignupPage/SignupPage";
 import AddProductsPage from "./routes/AddProductsPage/AddProductsPage";
 import ProductsListPage from "./routes/ProductsListPage/ProductsListPage";
+import OverviewPage from "./routes/OverviewPage/OverviewPage";
 import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "./context/UserContext";
@@ -47,6 +48,15 @@ function App() {
                   <PrivateRoutePage>
                     <ProductsListPage />
                   </PrivateRoutePage>
+                }
+              />
+              <Route
+                exact
+                path="/user/overview"
+                element={
+                  <RedirectLoginPage>
+                    <OverviewPage />
+                  </RedirectLoginPage>
                 }
               />
               <Route
