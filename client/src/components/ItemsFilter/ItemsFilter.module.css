@@ -1,0 +1,12 @@
+.filter_container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.filter {
+  width: 35%;
+}
+
+.searchbox {
+  width: 60%;
+}

@@ -13,10 +13,11 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeIcon from "@material-ui/icons/Home";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import QueueIcon from "@material-ui/icons/Queue";
+import TableChartIcon from "@material-ui/icons/TableChart";
 
 const useStyles = makeStyles({
   header: {
-    backgroundColor: "#f7717d",
+    backgroundColor: "#dd6c75",
     color: "#fff",
   },
 });
@@ -42,6 +43,11 @@ const Header = () => {
       label: "Products List",
       icon: <FormatListNumberedIcon />,
       href: `/user/list`,
+    },
+    {
+      label: "Overview",
+      icon: <TableChartIcon />,
+      href: `/user/overview`,
     },
     {
       label: "Logout",

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
+import Fuse from "fuse.js";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import AddIconButton from "../../components/AddIconButton/AddIconButton";
 import AddProductModal from "../../components/AddProductModal/AddProductModal";
+import ItemsFilter from "../../components/ItemsFilter/ItemsFilter";
 import { fetchMethod } from "../../utils/fetchMethod";
 import soundfile from "../../sounds/blip.mp3";
 import { UserContext } from "../../context/UserContext";
@@ -16,7 +18,20 @@ function ProductsListPage() {
     barcode: "",
     expires: "",
   });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filter, setFilter] = useState("");
   const [userList, setUserList] = useState(user.list);
+
+  const fuse = new Fuse(userList, {
+    keys: ["product.title"],
+    includeScore: true,
+  });
+
+  const results = fuse.search(searchTerm);
+
+  const byNameResults = searchTerm
+    ? results.filter((item) => item.score < 0.5).map((item) => item.item)
+    : userList;
 
   const handleScannedResult = (error, result) => {
     if (result) {
@@ -57,7 +72,7 @@ function ProductsListPage() {
 
   const removeProductFromList = (id) => {
     fetchMethod("delete", `/api/user/${user._id}/deleteproduct/${id}`).then(
-      (res) => {
+      () => {
         fetchMethod("get", `/api/user/${user._id}`).then((item) =>
           setUserList(item.user.list)
         );
@@ -67,14 +82,33 @@ function ProductsListPage() {
 
   return (
     <>
+      <ItemsFilter
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        filter={filter}
+        setFilter={setFilter}
+        userList={userList}
+        setUserList={setUserList}
+      />
       <div className={styles.column}>
-        {userList?.map((item, index) => (
-          <ProductItem
-            key={index + 1}
-            item={item}
-            onClick={removeProductFromList}
-          />
-        ))}
+        {byNameResults
+          .sort((a, b) => {
+            switch (filter) {
+              case "name":
+                return a.product.title.localeCompare(b.product.title);
+              case "exp":
+                return a.expires.localeCompare(b.expires);
+              default:
+                return a._id.localeCompare(b._id);
+            }
+          })
+          .map((item, index) => (
+            <ProductItem
+              key={index + 1}
+              item={item}
+              onClick={removeProductFromList}
+            />
+          ))}
       </div>
       <AddIconButton handleClick={handleModalOpen} />
       <AddProductModal

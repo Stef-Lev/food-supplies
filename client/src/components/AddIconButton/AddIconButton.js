@@ -6,12 +6,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   btn: {
-    backgroundColor: "#f7717d",
+    backgroundColor: "#dd6c75",
     boxShadow:
       "0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(161,161,161,0.25)",
     color: "#fff",
     "&:hover": {
-      backgroundColor: "#f7717d",
+      backgroundColor: "#dd6c75",
     },
   },
   icon: {
