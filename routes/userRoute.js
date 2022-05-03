@@ -28,9 +28,24 @@ exports.getPlayerData = catchAsync(async (req, res) => {
   res.status(200).json({ user });
 });
 
-// exports.addListProduct = catchAsync(async (req, res) => {
-//   const { barcode } = req.body;
-//   // const product = await Product.findOne({ barcode: `${barcode}` });
-//   const product = await Product.findOne({ barcode: barcode });
-//   res.status(200).json({ product });
-// });
+exports.getOverview = catchAsync(async (req, res) => {
+  const user = await User.findById(req.params.id).populate("list.product");
+  const obj = {};
+  user.list.map((item) => {
+    const id = item.product._id;
+    if (obj[id]) {
+      obj[id] += 1;
+    } else {
+      obj[id] = 1;
+    }
+  });
+  let data = [];
+  const entries = Object.entries(obj);
+
+  for (let entry of entries) {
+    const product = await Product.findById(entry[0]);
+    data.push({ product, quantity: entry[1] });
+  }
+
+  res.status(200).json(data);
+});

@@ -54,9 +54,9 @@ function App() {
                 exact
                 path="/user/overview"
                 element={
-                  <RedirectLoginPage>
+                  <PrivateRoutePage>
                     <OverviewPage />
-                  </RedirectLoginPage>
+                  </PrivateRoutePage>
                 }
               />
               <Route
@@ -84,5 +84,7 @@ function App() {
     </div>
   );
 }
+
+//Rename app to amalthea
 
 export default App;

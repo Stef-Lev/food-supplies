@@ -37,7 +37,7 @@ function ProductsListPage() {
     fetchMethod("get", `/api/user/${user._id}`).then((item) =>
       setUserList(item.user.list)
     );
-  }, []);
+  }, [user._id]);
 
   const handleScannedResult = (error, result) => {
     if (result) {
