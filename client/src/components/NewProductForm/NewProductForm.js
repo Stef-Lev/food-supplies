@@ -27,6 +27,7 @@ function NewProductForm({ product, setProduct, onSubmit }) {
           variant="outlined"
           autoComplete="off"
           value={barcode}
+          onChange={(e) => handleInputChange(e, "barcode")}
           fullWidth
         />
         <TextField

@@ -15,7 +15,7 @@ function ProductsListPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [scannerOn, setScannerOn] = useState(false);
   const [product, setProduct] = useState({
-    barcode: "",
+    barcode: "123456789",
     expires: new Date(),
   });
   const [searchTerm, setSearchTerm] = useState("");
@@ -65,7 +65,7 @@ function ProductsListPage() {
     setModalOpen(false);
     setProduct({
       barcode: "",
-      expires: "",
+      expires: new Date(),
     });
   };
 

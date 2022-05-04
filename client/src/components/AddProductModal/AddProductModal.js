@@ -18,7 +18,7 @@ function AddProductModal({
   scannerOn,
   onScan,
   onInputChange,
-  handleExpirationDateChange,
+  onDateChange,
   addProductToList,
 }) {
   console.log(product);
@@ -55,7 +55,7 @@ function AddProductModal({
                   id="date-picker-inline"
                   label="Date picker inline"
                   value={product.expires}
-                  onChange={handleExpirationDateChange}
+                  onChange={onDateChange}
                   KeyboardButtonProps={{
                     "aria-label": "change date",
                   }}

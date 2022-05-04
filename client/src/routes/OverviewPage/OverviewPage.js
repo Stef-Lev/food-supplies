@@ -14,7 +14,8 @@ function OverviewPage() {
     );
   }, [user._id]);
 
-  console.log(data);
+  console.log("LIST", user.list, "DATA", data);
+
   return (
     <div>
       <h2 className={styles.title}>Stockpile data</h2>
