@@ -4,6 +4,12 @@ import TextField from "@material-ui/core/TextField";
 import styles from "./AddProductModal.module.css";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
 
 function AddProductModal({
   isOpen,
@@ -12,8 +18,10 @@ function AddProductModal({
   scannerOn,
   onScan,
   onInputChange,
+  handleExpirationDateChange,
   addProductToList,
 }) {
+  console.log(product);
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -37,15 +45,23 @@ function AddProductModal({
               style={{ marginBottom: "16px" }}
               fullWidth
             />
-            <TextField
-              id="new-prd-expires"
-              label="Expiration (dd-mm-yyyy)"
-              variant="outlined"
-              autoComplete="off"
-              value={product.expires}
-              onChange={(e) => onInputChange(e, "expires")}
-              fullWidth
-            />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justifyContent="space-around">
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant="inline"
+                  format="dd/MM/yyyy"
+                  margin="normal"
+                  id="date-picker-inline"
+                  label="Date picker inline"
+                  value={product.expires}
+                  onChange={handleExpirationDateChange}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date",
+                  }}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
           </div>
         )}
 

@@ -16,7 +16,7 @@ function ProductsListPage() {
   const [scannerOn, setScannerOn] = useState(false);
   const [product, setProduct] = useState({
     barcode: "",
-    expires: "",
+    expires: new Date(),
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("");
@@ -50,6 +50,10 @@ function ProductsListPage() {
 
   const handleInputChange = (event, field) => {
     setProduct({ ...product, [field]: event.target.value });
+  };
+
+  const handleExpirationDateChange = (date) => {
+    setProduct({ ...product, expires: date });
   };
 
   const handleModalOpen = () => {
@@ -124,6 +128,7 @@ function ProductsListPage() {
         scannerOn={scannerOn}
         onScan={handleScannedResult}
         onInputChange={handleInputChange}
+        onDateChange={handleExpirationDateChange}
         addProductToList={addProductToList}
       />
     </>

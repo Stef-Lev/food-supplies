@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
+import OverviewTable from "../../components/OverviewTable/OverviewTable";
 import { UserContext } from "../../context/UserContext";
 import { fetchMethod } from "../../utils/fetchMethod";
+import styles from "./OverviewPage.module.css";
 
 function OverviewPage() {
   const { user } = useContext(UserContext);
@@ -15,10 +17,8 @@ function OverviewPage() {
   console.log(data);
   return (
     <div>
-      <h2>OverviewPage</h2>
-      <ul>
-        {data.length > 0 && data.map((item) => <li>{item.product.title}</li>)}
-      </ul>
+      <h2 className={styles.title}>Stockpile data</h2>
+      {data.length > 0 && <OverviewTable products={data} />}
     </div>
   );
 }
