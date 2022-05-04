@@ -7,6 +7,7 @@ import styles from "./OverviewPage.module.css";
 function OverviewPage() {
   const { user } = useContext(UserContext);
   const [data, setData] = useState([]);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchMethod("get", `/api/user/${user._id}/overview`).then((item) =>
