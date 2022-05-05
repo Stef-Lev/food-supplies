@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import Button from "@material-ui/core/Button";
 export const MessageContext = createContext({});
 
 export const MessageProvider = (props) => {
@@ -31,19 +32,42 @@ export const MessageProvider = (props) => {
             horizontal: "left",
           }}
           open={open}
-          autoHideDuration={4000}
+          autoHideDuration={20000}
           onClose={handleClose}
           message={message.msg}
           action={
             <>
-              <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleClose}
-              >
-                <CloseIcon fontSize="small" />
-              </IconButton>
+              {message.status === "warning" && (
+                <div>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    onClick={() => console.log("YES")}
+                    style={{ marginRight: "10px" }}
+                  >
+                    Yes
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    onClick={handleClose}
+                  >
+                    No
+                  </Button>
+                </div>
+              )}
+              {message.status !== "warning" && (
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={handleClose}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              )}
             </>
           }
         />

@@ -7,10 +7,12 @@ import ItemsFilter from "../../components/ItemsFilter/ItemsFilter";
 import { fetchMethod } from "../../utils/fetchMethod";
 import soundfile from "../../sounds/blip.mp3";
 import { UserContext } from "../../context/UserContext";
+import { MessageContext } from "../../context/MessageContext";
 import styles from "./ProductsListPage.module.css";
 
 function ProductsListPage() {
   const { user } = useContext(UserContext);
+  const { showMessage } = useContext(MessageContext);
   const audio = new Audio(soundfile);
   const [modalOpen, setModalOpen] = useState(false);
   const [scannerOn, setScannerOn] = useState(false);
@@ -81,6 +83,8 @@ function ProductsListPage() {
   };
 
   const removeProductFromList = (id) => {
+    showMessage("warning", "Delete?");
+
     fetchMethod("delete", `/api/user/${user._id}/deleteproduct/${id}`).then(
       () => {
         fetchMethod("get", `/api/user/${user._id}`).then((item) =>
