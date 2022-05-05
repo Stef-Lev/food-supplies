@@ -1,24 +1,30 @@
 import React, { useState, useEffect, useContext } from "react";
 import OverviewTable from "../../components/OverviewTable/OverviewTable";
-import Button from "@material-ui/core/Button";
 import { UserContext } from "../../context/UserContext";
 import { fetchMethod } from "../../utils/fetchMethod";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 import { format } from "date-fns";
 import { CSVLink } from "react-csv";
+import { MessageContext } from "../../context/MessageContext";
 import styles from "./OverviewPage.module.css";
 
 function OverviewPage() {
   const { user } = useContext(UserContext);
+  const { showMessage } = useContext(MessageContext);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetchMethod("get", `/api/user/${user._id}/overview`).then((item) => {
-      setProducts(item);
-      setLoading(false);
-    });
-  }, [user._id]);
+    fetchMethod("get", `/api/user/${user._id}/overview`)
+      .then((item) => {
+        setProducts(item);
+        setLoading(false);
+      })
+      .catch(() => {
+        showMessage("error", "Something went wrong. Please try again later.");
+        setLoading(false);
+      });
+  }, [user._id, showMessage]);
 
   const prepareData = (type) => {
     const data = [];
@@ -41,9 +47,7 @@ function OverviewPage() {
       return null;
     }
   };
-
   // console.log("LIST", user.list, "DATA", products);
-
   return (
     <div>
       <h2 className={styles.title}>Stockpile data</h2>

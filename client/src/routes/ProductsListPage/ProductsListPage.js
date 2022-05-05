@@ -101,24 +101,26 @@ function ProductsListPage() {
         setUserList={setUserList}
       />
       <div className={styles.column}>
-        {byNameResults
-          .sort((a, b) => {
-            switch (filter) {
-              case "name":
-                return a.product.title.localeCompare(b.product.title);
-              case "exp":
-                return a.expires.localeCompare(b.expires);
-              default:
-                return a._id.localeCompare(b._id);
-            }
-          })
-          .map((item, index) => (
-            <ProductItem
-              key={index + 1}
-              item={item}
-              onClick={removeProductFromList}
-            />
-          ))}
+        {byNameResults.length > 0 &&
+          byNameResults
+            .sort((a, b) => {
+              switch (filter) {
+                case "name":
+                  return a.product.title.localeCompare(b.product.title);
+                case "exp":
+                  return a.expires.localeCompare(b.expires);
+                default:
+                  return a._id.localeCompare(b._id);
+              }
+            })
+            .map((item, index) => (
+              <ProductItem
+                key={index + 1}
+                item={item}
+                onClick={removeProductFromList}
+              />
+            ))}
+        {!byNameResults && <p>No products added</p>}
       </div>
       <AddIconButton handleClick={handleModalOpen} />
       <AddProductModal

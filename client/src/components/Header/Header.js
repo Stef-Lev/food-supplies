@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 // import Link from "@material-ui/core/Link";
 import { UserContext } from "../../context/UserContext";
-// import useLogout from "../../utils/useLogout";
+import useLogout from "../../utils/useLogout";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeIcon from "@material-ui/icons/Home";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
@@ -26,7 +26,7 @@ const Header = () => {
   const [mobileView, setMobileView] = useState(false);
   const { user } = useContext(UserContext);
   const classes = useStyles();
-  // const { logoutUser } = useLogout();
+  const { logoutUser } = useLogout();
 
   const headerData = [
     {
@@ -71,9 +71,9 @@ const Header = () => {
     };
   }, []);
 
-  // const isLogoutButton = (label) => {
-  //   return label === "Logout";
-  // };
+  const isLogoutButton = (label) => {
+    return label === "Logout";
+  };
 
   const displayDesktop = () => {
     return (
@@ -88,7 +88,7 @@ const Header = () => {
   const getMenuButtons = () => {
     return headerData.map(({ label, href, icon }) => {
       if (mobileView) {
-        return (
+        return !isLogoutButton(label) ? (
           <IconButton
             {...{
               key: label,
@@ -99,15 +99,37 @@ const Header = () => {
           >
             {icon}
           </IconButton>
+        ) : (
+          <IconButton
+            {...{
+              key: label,
+              color: "inherit",
+              onClick: logoutUser,
+              component: Button,
+            }}
+          >
+            {icon}
+          </IconButton>
         );
       } else {
-        return (
+        return !isLogoutButton(label) ? (
           <Button
             {...{
               key: label,
               color: "inherit",
               to: href,
               component: RouterLink,
+            }}
+          >
+            {label}
+          </Button>
+        ) : (
+          <Button
+            {...{
+              key: label,
+              color: "inherit",
+              onClick: logoutUser,
+              component: Button,
             }}
           >
             {label}

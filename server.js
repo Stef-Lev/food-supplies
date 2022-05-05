@@ -4,12 +4,26 @@ const app = express();
 const cors = require("cors");
 const PORT = process.env.PORT || 8080;
 const mongoose = require("mongoose");
-const database = process.env.MONGODB_URI;
+const database = findDatabase(process.env.NODE_ENV);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const jwtSecret = process.env.JWT_SECRET;
 
 mongoose.connect(database);
+
+function findDatabase(env) {
+  switch (env) {
+    case "production":
+      return process.env.MONGODB_PROD_URI;
+    case "development":
+      return process.env.MONGODB_DEV_URI;
+    case "demo":
+      return process.env.MONGODB_DEV_URI;
+    default:
+      return process.env.MONGODB_DEV_URI;
+  }
+}
+
 const db = mongoose.connection;
 db.on("error", () => console.error("Error"));
 db.once("open", () => {

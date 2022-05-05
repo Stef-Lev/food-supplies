@@ -12,6 +12,7 @@ import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "./context/UserContext";
 import useFindUser from "./utils/useFindUser";
+import { MessageProvider } from "./context/MessageContext";
 
 function App() {
   const { user, setUser, isLoading } = useFindUser();
@@ -20,65 +21,67 @@ function App() {
     <div className="App">
       <Router>
         <UserContext.Provider value={{ user, setUser, isLoading }}>
-          {user && <Header />}
-          <Container maxWidth="sm" className="main-container">
-            <Routes>
-              <Route
-                exact
-                path="/"
-                element={
-                  <PrivateRoutePage>
-                    <HomePage />
-                  </PrivateRoutePage>
-                }
-              />
-              <Route
-                exact
-                path="/product"
-                element={
-                  <PrivateRoutePage>
-                    <AddProductsPage />
-                  </PrivateRoutePage>
-                }
-              />
-              <Route
-                exact
-                path="/user/list"
-                element={
-                  <PrivateRoutePage>
-                    <ProductsListPage />
-                  </PrivateRoutePage>
-                }
-              />
-              <Route
-                exact
-                path="/user/overview"
-                element={
-                  <PrivateRoutePage>
-                    <OverviewPage />
-                  </PrivateRoutePage>
-                }
-              />
-              <Route
-                exact
-                path="/login"
-                element={
-                  <RedirectLoginPage>
-                    <LoginPage />
-                  </RedirectLoginPage>
-                }
-              />
-              <Route
-                exact
-                path="/signup"
-                element={
-                  <RedirectLoginPage>
-                    <SignupPage />
-                  </RedirectLoginPage>
-                }
-              />
-            </Routes>
-          </Container>
+          <MessageProvider>
+            {user && <Header />}
+            <Container maxWidth="sm" className="main-container">
+              <Routes>
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <PrivateRoutePage>
+                      <HomePage />
+                    </PrivateRoutePage>
+                  }
+                />
+                <Route
+                  exact
+                  path="/product"
+                  element={
+                    <PrivateRoutePage>
+                      <AddProductsPage />
+                    </PrivateRoutePage>
+                  }
+                />
+                <Route
+                  exact
+                  path="/user/list"
+                  element={
+                    <PrivateRoutePage>
+                      <ProductsListPage />
+                    </PrivateRoutePage>
+                  }
+                />
+                <Route
+                  exact
+                  path="/user/overview"
+                  element={
+                    <PrivateRoutePage>
+                      <OverviewPage />
+                    </PrivateRoutePage>
+                  }
+                />
+                <Route
+                  exact
+                  path="/login"
+                  element={
+                    <RedirectLoginPage>
+                      <LoginPage />
+                    </RedirectLoginPage>
+                  }
+                />
+                <Route
+                  exact
+                  path="/signup"
+                  element={
+                    <RedirectLoginPage>
+                      <SignupPage />
+                    </RedirectLoginPage>
+                  }
+                />
+              </Routes>
+            </Container>
+          </MessageProvider>
         </UserContext.Provider>
       </Router>
     </div>
