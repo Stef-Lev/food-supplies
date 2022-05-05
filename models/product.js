@@ -8,9 +8,6 @@ const ProductSchema = new Schema({
   barcode: {
     type: String,
   },
-  imageUrl: {
-    type: String,
-  },
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

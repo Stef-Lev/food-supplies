@@ -12,7 +12,6 @@ function AddProductsPage() {
   const [product, setProduct] = useState({
     title: "",
     barcode: "",
-    imageUrl: "",
   });
   const audio = new Audio(soundfile);
 
@@ -36,7 +35,6 @@ function AddProductsPage() {
       setProduct({
         title: "",
         barcode: "",
-        imageUrl: "",
       });
     });
   };

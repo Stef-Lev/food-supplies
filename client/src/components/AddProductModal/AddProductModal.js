@@ -33,38 +33,35 @@ function AddProductModal({
       <div className={styles.container}>
         <p>Scan to add product to your list</p>
         {scannerOn && <BarcodeScannerComponent width={260} onUpdate={onScan} />}
-        {product.barcode && (
-          <div className={styles.column}>
-            <TextField
-              id="new-prd-barcode"
-              label="Barcode"
-              variant="outlined"
-              autoComplete="off"
-              value={product.barcode}
-              onChange={(e) => onInputChange(e, "barcode")}
-              style={{ marginBottom: "16px" }}
-              fullWidth
-            />
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justifyContent="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="dd/MM/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  value={product.expires}
-                  onChange={onDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
-                  }}
-                />
-              </Grid>
-            </MuiPickersUtilsProvider>
-          </div>
-        )}
-
+        <div className={styles.column}>
+          <TextField
+            id="new-prd-barcode"
+            label="Barcode"
+            variant="outlined"
+            autoComplete="off"
+            value={product.barcode}
+            onChange={(e) => onInputChange(e, "barcode")}
+            style={{ marginBottom: "16px" }}
+            fullWidth
+          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justifyContent="space-around">
+              <KeyboardDatePicker
+                fullWidth
+                disableToolbar
+                format="dd/MM/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                label="Date picker inline"
+                value={product.expires}
+                onChange={onDateChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change date",
+                }}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
+        </div>
         <div className={styles.buttons}>
           <Button
             variant="contained"

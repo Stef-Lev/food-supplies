@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 function NewProductForm({ product, setProduct, onSubmit }) {
-  const { title, barcode, imageUrl } = product;
+  const { title, barcode } = product;
 
   const handleInputChange = (event, field) => {
     setProduct({ ...product, [field]: event.target.value });
@@ -28,15 +28,6 @@ function NewProductForm({ product, setProduct, onSubmit }) {
           autoComplete="off"
           value={barcode}
           onChange={(e) => handleInputChange(e, "barcode")}
-          fullWidth
-        />
-        <TextField
-          id="new-prd-imageUrl"
-          label="Image Url (Optional)"
-          variant="outlined"
-          autoComplete="off"
-          value={imageUrl}
-          onChange={(e) => handleInputChange(e, "imageUrl")}
           fullWidth
         />
         <Button type="submit" fullWidth className="auth-btn" onClick={onSubmit}>
