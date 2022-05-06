@@ -60,13 +60,13 @@ function OverviewPage() {
             <div className={styles.export_btn}>
               <CSVLink
                 data={prepareData("quantity")}
-                download="amalthea_quantity"
+                download="supplies_quantity"
               >
                 Quantities
               </CSVLink>
             </div>
             <div className={styles.export_btn}>
-              <CSVLink data={prepareData("list")} download="amalthea_list">
+              <CSVLink data={prepareData("list")} download="supplies_list">
                 Product List
               </CSVLink>
             </div>

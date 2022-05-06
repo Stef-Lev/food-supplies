@@ -6,7 +6,11 @@ import Button from "@material-ui/core/Button";
 export const MessageContext = createContext({});
 
 export const MessageProvider = (props) => {
-  const [message, setMessage] = useState({ status: "", msg: "" });
+  const [message, setMessage] = useState({
+    status: "",
+    msg: "",
+    callback: () => {},
+  });
   const [open, setOpen] = useState(false);
 
   const handleClose = (event, reason) => {
@@ -14,12 +18,17 @@ export const MessageProvider = (props) => {
       return;
     }
     setOpen(false);
-    setMessage({ status: "", msg: "" });
+    setMessage({ status: "", msg: "", callback: () => {} });
   };
 
-  const showMessage = (status, msg) => {
-    setMessage({ status, msg });
+  const showMessage = (status, msg, callback) => {
+    setMessage({ status, msg, callback });
     setOpen(true);
+  };
+
+  const triggerCallback = () => {
+    message.callback();
+    handleClose();
   };
 
   return (
@@ -43,7 +52,7 @@ export const MessageProvider = (props) => {
                     variant="contained"
                     color="primary"
                     size="small"
-                    onClick={() => console.log("YES")}
+                    onClick={triggerCallback}
                     style={{ marginRight: "10px" }}
                   >
                     Yes

@@ -83,15 +83,15 @@ function ProductsListPage() {
   };
 
   const removeProductFromList = (id) => {
-    showMessage("warning", "Delete?");
-
-    fetchMethod("delete", `/api/user/${user._id}/deleteproduct/${id}`).then(
-      () => {
-        fetchMethod("get", `/api/user/${user._id}`).then((item) =>
-          setUserList(item.user.list)
-        );
-      }
-    );
+    showMessage("warning", "Delete?", () => {
+      fetchMethod("delete", `/api/user/${user._id}/deleteproduct/${id}`).then(
+        () => {
+          fetchMethod("get", `/api/user/${user._id}`).then((item) =>
+            setUserList(item.user.list)
+          );
+        }
+      );
+    });
   };
 
   return (

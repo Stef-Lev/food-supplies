@@ -88,6 +88,6 @@ function App() {
   );
 }
 
-//Rename app to amalthea
+//Rename app to food supplies manager
 
 export default App;
