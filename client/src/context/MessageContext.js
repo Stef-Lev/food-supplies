@@ -41,7 +41,7 @@ export const MessageProvider = (props) => {
             horizontal: "left",
           }}
           open={open}
-          autoHideDuration={20000}
+          autoHideDuration={8000}
           onClose={handleClose}
           message={message.msg}
           action={

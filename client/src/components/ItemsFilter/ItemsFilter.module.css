@@ -2,23 +2,29 @@
   margin-bottom: 20px;
   position: fixed;
   background-color: #f1f1f1;
-  padding: 16px 20px;
+  padding: 25px 20px;
   width: 100%;
   left: 0;
-  top: 56px;
+  top: 55px;
 }
 .filter_box {
-  padding: 0px;
-  display: flex;
+  display: flex !important;
   width: 100%;
   background-color: #f1f1f1;
   justify-content: space-between;
 }
 
 .filter {
-  width: 100px;
+  width: 110px;
 }
 
 .searchbox {
-  width: 180px;
+  width: 160px;
+}
+
+@media (max-width: 600px) {
+  .filter_box {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 }
