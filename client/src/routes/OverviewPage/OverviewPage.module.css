@@ -11,7 +11,7 @@
 .export_btn {
   background-color: #064960;
   padding: 6px 16px;
-  border-radius: 8px;
+  border-radius: 18px;
   box-shadow: 0px 2px 2px rgb(108, 108, 108);
 }
 .export_btn a {
@@ -22,7 +22,7 @@
 .csv_container {
   background-color: #fff;
   margin-top: 20px;
-  border-radius: 12px;
+  border-radius: 18px;
   padding: 20px;
   box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
 }

@@ -8,6 +8,7 @@ import textFieldStyle from "../../utils/textFieldStyle";
 import { makeStyles } from "@material-ui/core";
 import { createStyles } from "@material-ui/core";
 import soundfile from "../../sounds/blip.mp3";
+import brandBtnStyle from "../../utils/brandBtnStyle";
 import styles from "./AddProductsPage.module.css";
 
 function AddProductsPage() {
@@ -57,7 +58,7 @@ function AddProductsPage() {
         <Button
           variant="contained"
           color="primary"
-          style={{ background: "#064960" }}
+          style={{ ...brandBtnStyle, background: "#064960" }}
           onClick={() => setScannerOn(true)}
         >
           SCAN
@@ -65,7 +66,7 @@ function AddProductsPage() {
         <Button
           variant="contained"
           color="primary"
-          style={{ background: "#ed5f5f" }}
+          style={{ ...brandBtnStyle, background: "#ed5f5f" }}
           onClick={() => {
             setScannerOn(false);
             clearInputs();

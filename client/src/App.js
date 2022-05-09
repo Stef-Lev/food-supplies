@@ -89,5 +89,7 @@ function App() {
 }
 
 //Rename app to food supplies manager
+// Add bought and expires info to each item
+// Change trush can icon for delete
 
 export default App;
