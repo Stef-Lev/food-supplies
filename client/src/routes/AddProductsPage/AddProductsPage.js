@@ -4,6 +4,9 @@ import Button from "@material-ui/core/Button";
 import NewProductForm from "../../components/NewProductForm/NewProductForm";
 import TextField from "@material-ui/core/TextField";
 import { fetchMethod } from "../../utils/fetchMethod";
+import textFieldStyle from "../../utils/textFieldStyle";
+import { makeStyles } from "@material-ui/core";
+import { createStyles } from "@material-ui/core";
 import soundfile from "../../sounds/blip.mp3";
 import styles from "./AddProductsPage.module.css";
 
@@ -14,6 +17,8 @@ function AddProductsPage() {
     barcode: "",
   });
   const audio = new Audio(soundfile);
+  const useStyles = makeStyles((theme) => createStyles(textFieldStyle));
+  const classes = useStyles();
 
   const handleInputChange = (event, field) => {
     setProduct({ ...product, [field]: event.target.value });
@@ -28,6 +33,13 @@ function AddProductsPage() {
     }
   };
 
+  const clearInputs = () => {
+    setProduct({
+      title: "",
+      barcode: "",
+    });
+  };
+
   const submitProduct = (e) => {
     e.preventDefault();
     fetchMethod("post", "/api/product/add", product).then((res) => {
@@ -40,22 +52,28 @@ function AddProductsPage() {
   };
 
   return (
-    <div className={styles.color}>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ background: "green" }}
-        onClick={() => setScannerOn(true)}
-      >
-        SCAN
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => setScannerOn(false)}
-      >
-        CANCEL
-      </Button>
+    <div>
+      <div className={styles.buttons_flex}>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ background: "#064960" }}
+          onClick={() => setScannerOn(true)}
+        >
+          SCAN
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ background: "#ed5f5f" }}
+          onClick={() => {
+            setScannerOn(false);
+            clearInputs();
+          }}
+        >
+          CANCEL
+        </Button>
+      </div>
       {scannerOn && (
         <div className={styles.camera_frame}>
           {/* <div className={styles.barcode_target}>
@@ -69,6 +87,9 @@ function AddProductsPage() {
               label="Add barcode manually"
               variant="outlined"
               autoComplete="off"
+              classes={{
+                root: classes.root,
+              }}
               value={product.barcode}
               onChange={(e) => handleInputChange(e, "barcode")}
               fullWidth

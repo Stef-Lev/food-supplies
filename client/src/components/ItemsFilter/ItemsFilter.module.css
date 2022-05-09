@@ -1,7 +1,7 @@
 .filter_container {
   margin-bottom: 20px;
   position: fixed;
-  background-color: #f1f1f1;
+  background-color: #eafaff;
   padding: 25px 20px;
   width: 100%;
   left: 0;
@@ -12,6 +12,7 @@
   width: 100%;
   background-color: #f1f1f1;
   justify-content: space-between;
+  background-color: #eafaff;
 }
 
 .filter {

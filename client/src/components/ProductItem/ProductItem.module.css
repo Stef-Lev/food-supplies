@@ -2,12 +2,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 5px 8px;
-  background-color: #1d84b0;
-  color: #f1f1f1;
+  background-color: #fff;
+  color: #064960;
   text-align: left;
-  box-shadow: 0px 5px 12px -2px rgba(74, 74, 74, 0.75);
-  -webkit-box-shadow: 0px 5px 12px -2px rgba(74, 74, 74, 0.75);
-  -moz-box-shadow: 0px 5px 12px -2px rgba(74, 74, 74, 0.75);
+  box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+.product_title {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #010f13;
+}
+
+.product_expires {
+  font-style: italic;
 }

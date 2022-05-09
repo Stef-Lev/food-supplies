@@ -7,8 +7,10 @@ function ProductItem({ item, onClick }) {
   return (
     <div className={styles.product_item}>
       <div>
-        <h3>{item.product.title}</h3>
-        <p>Expires: {format(new Date(item.expires), "dd/MM/yyyy")}</p>
+        <h3 className={styles.product_title}>{item.product.title}</h3>
+        <p className={styles.product_expires}>
+          Expires: {format(new Date(item.expires), "dd/MM/yyyy")}
+        </p>
       </div>
       <DeleteForeverIcon onClick={() => onClick(item._id)} />
     </div>

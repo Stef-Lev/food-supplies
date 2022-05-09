@@ -30,3 +30,9 @@
   flex-direction: column;
   gap: 20px;
 }
+.buttons_flex {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}

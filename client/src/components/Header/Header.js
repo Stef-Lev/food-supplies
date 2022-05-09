@@ -17,7 +17,7 @@ import TableChartIcon from "@material-ui/icons/TableChart";
 
 const useStyles = makeStyles({
   header: {
-    backgroundColor: "#dd6c75",
+    backgroundColor: "#064960",
     color: "#fff",
   },
 });

@@ -61,20 +61,22 @@ function OverviewPage() {
       {products.length > 0 && (
         <>
           <OverviewTable products={products} />
-          <h3>Export data to CSV</h3>
-          <div className={styles.btn_container}>
-            <div className={styles.export_btn}>
-              <CSVLink
-                data={prepareData("quantity")}
-                download="supplies_quantity"
-              >
-                Quantities
-              </CSVLink>
-            </div>
-            <div className={styles.export_btn}>
-              <CSVLink data={prepareData("list")} download="supplies_list">
-                Product List
-              </CSVLink>
+          <div className={styles.csv_container}>
+            <h3>Export data to CSV</h3>
+            <div className={styles.btn_container}>
+              <div className={styles.export_btn}>
+                <CSVLink
+                  data={prepareData("quantity")}
+                  download="supplies_quantity"
+                >
+                  Quantities
+                </CSVLink>
+              </div>
+              <div className={styles.export_btn}>
+                <CSVLink data={prepareData("list")} download="supplies_list">
+                  Product List
+                </CSVLink>
+              </div>
             </div>
           </div>
         </>
