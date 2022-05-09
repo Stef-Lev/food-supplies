@@ -33,7 +33,8 @@ function OverviewPage() {
       products.forEach((item) => {
         data.push([item.product.title, item.quantity]);
       });
-      return data;
+      const sortedData = data.sort((a, b) => b[1] - a[1]);
+      return sortedData;
     } else if (type === "list") {
       data[0] = ["product", "expires"];
       user.list.forEach((item) => {
@@ -42,7 +43,12 @@ function OverviewPage() {
           format(new Date(item.expires), "dd/MM/yyyy"),
         ]);
       });
-      return data;
+      const sortedData = data.sort((a, b) => {
+        const newA = a[1].split("/").reverse().join("-");
+        const newB = b[1].split("/").reverse().join("-");
+        return +new Date(newA) - +new Date(newB);
+      });
+      return sortedData;
     } else {
       return null;
     }
