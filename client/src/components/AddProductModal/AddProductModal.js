@@ -6,6 +6,10 @@ import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
+import { makeStyles } from "@material-ui/core";
+import { createStyles } from "@material-ui/core";
+import textFieldStyle from "../../utils/textFieldStyle";
+import brandBtnStyle from "../../utils/brandBtnStyle";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -21,7 +25,9 @@ function AddProductModal({
   onDateChange,
   addProductToList,
 }) {
-  console.log(product);
+  const useStyles = makeStyles((theme) => createStyles(textFieldStyle));
+  const classes = useStyles();
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -31,7 +37,7 @@ function AddProductModal({
       onClose={onClose}
     >
       <div className={styles.container}>
-        <p>Scan to add product to your list</p>
+        <p className="page-title">Scan to add product to your list</p>
         {scannerOn && <BarcodeScannerComponent width={260} onUpdate={onScan} />}
         <div className={styles.column}>
           <TextField
@@ -39,6 +45,10 @@ function AddProductModal({
             label="Barcode"
             variant="outlined"
             autoComplete="off"
+            size="small"
+            classes={{
+              root: classes.root,
+            }}
             value={product.barcode}
             onChange={(e) => onInputChange(e, "barcode")}
             style={{ marginBottom: "16px" }}
@@ -51,8 +61,13 @@ function AddProductModal({
                 disableToolbar
                 format="dd/MM/yyyy"
                 margin="normal"
+                inputVariant="outlined"
+                size="small"
+                classes={{
+                  root: classes.root,
+                }}
                 id="date-picker-inline"
-                label="Date picker inline"
+                label="Expiration date"
                 value={product.expires}
                 onChange={onDateChange}
                 KeyboardButtonProps={{
@@ -66,11 +81,17 @@ function AddProductModal({
           <Button
             variant="contained"
             color="primary"
+            style={{ ...brandBtnStyle, background: "#064960", margin: "0" }}
             onClick={addProductToList}
           >
             Add
           </Button>
-          <Button variant="contained" color="secondary" onClick={onClose}>
+          <Button
+            variant="contained"
+            color="secondary"
+            style={{ ...brandBtnStyle, background: "#ed5f5f", margin: "0" }}
+            onClick={onClose}
+          >
             Cancel
           </Button>
         </div>

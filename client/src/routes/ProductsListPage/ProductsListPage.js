@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Fuse from "fuse.js";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import AddIconButton from "../../components/AddIconButton/AddIconButton";
+import ScrollTopButton from "../../components/ScrollTopButton/ScrollTopButton";
 import AddProductModal from "../../components/AddProductModal/AddProductModal";
 import ItemsFilter from "../../components/ItemsFilter/ItemsFilter";
 import { fetchMethod } from "../../utils/fetchMethod";
@@ -127,6 +128,7 @@ function ProductsListPage() {
         {!byNameResults && <p>No products added</p>}
       </div>
       <AddIconButton handleClick={handleModalOpen} />
+      <ScrollTopButton />
       <AddProductModal
         isOpen={modalOpen}
         onClose={handleModalClose}

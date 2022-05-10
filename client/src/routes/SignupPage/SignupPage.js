@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
+import brandBtnStyle from "../../utils/brandBtnStyle";
+import textFieldStyle from "../../utils/textFieldStyle";
+import { makeStyles } from "@material-ui/core";
+import { createStyles } from "@material-ui/core";
 import useAuth from "../../utils/useAuth";
 
 function SignupPage() {
@@ -12,6 +16,9 @@ function SignupPage() {
     password: "",
     passwordCheck: "",
   });
+
+  const useStyles = makeStyles((theme) => createStyles(textFieldStyle));
+  const classes = useStyles();
 
   const handleSignup = async (e) => {
     console.log("SIGN", e);
@@ -26,7 +33,7 @@ function SignupPage() {
 
   return (
     <div className="login-page">
-      <h3 className="route-title">SIGN UP</h3>
+      <h3 className="page-title">SIGN UP</h3>
       <div>
         <form>
           <TextField
@@ -35,6 +42,10 @@ function SignupPage() {
             label="Full name"
             variant="outlined"
             autoComplete="off"
+            size="small"
+            classes={{
+              root: classes.root,
+            }}
             value={user.fullname}
             onChange={(e) => handleInputChange(e, "fullname")}
             fullWidth
@@ -45,6 +56,10 @@ function SignupPage() {
             label="Username"
             variant="outlined"
             autoComplete="off"
+            size="small"
+            classes={{
+              root: classes.root,
+            }}
             value={user.username}
             onChange={(e) => handleInputChange(e, "username")}
             fullWidth
@@ -56,6 +71,10 @@ function SignupPage() {
             label="Password"
             variant="outlined"
             autoComplete="off"
+            size="small"
+            classes={{
+              root: classes.root,
+            }}
             value={user.password}
             onChange={(e) => handleInputChange(e, "password")}
             fullWidth
@@ -68,27 +87,32 @@ function SignupPage() {
             label="Confirm password"
             variant="outlined"
             autoComplete="off"
+            size="small"
+            classes={{
+              root: classes.root,
+            }}
             value={user.passwordCheck}
             onChange={(e) => handleInputChange(e, "passwordCheck")}
             fullWidth
           />
-          <p className="form-msg">
-            Are you already a member?{" "}
-            <span>
-              <Link href="/login" underline="none">
-                LOG IN
-              </Link>
-            </span>
-          </p>
           <Button
             type="submit"
             fullWidth
             className="auth-btn"
+            style={brandBtnStyle}
             onClick={handleSignup}
           >
             SIGNUP
           </Button>
         </form>
+        <p className="form-msg">
+          Are you already a member?{" "}
+          <span>
+            <Link href="/login" underline="none">
+              LOG IN
+            </Link>
+          </span>
+        </p>
       </div>
     </div>
   );

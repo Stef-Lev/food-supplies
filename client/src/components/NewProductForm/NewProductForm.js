@@ -16,7 +16,6 @@ function NewProductForm({ product, setProduct, onSubmit }) {
   const useStyles = makeStyles((theme) => createStyles(textFieldStyle));
 
   const classes = useStyles();
-  console.log(classes);
 
   return (
     <div className={styles.form_container}>

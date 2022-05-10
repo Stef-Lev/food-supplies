@@ -10,7 +10,7 @@ import styles from "./OverviewTable.module.css";
 
 function OverviewTable({ products }) {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={{ borderRadius: "18px" }}>
       <Table aria-label="games table" size="small">
         <TableHead sx={{ borderBottom: "1px solid white" }}>
           <TableRow>

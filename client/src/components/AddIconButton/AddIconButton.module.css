@@ -4,11 +4,3 @@
   right: 20px;
   z-index: 1001;
 }
-
-.btn {
-  background-color: blue;
-}
-
-.MuiButtonBase-root.MuiIconButton-root.btn {
-  background-color: green;
-}

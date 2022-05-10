@@ -12,6 +12,7 @@
 }
 .container video {
   border-radius: 18px;
+  margin-bottom: 18px;
 }
 .buttons {
   margin-top: 20px;

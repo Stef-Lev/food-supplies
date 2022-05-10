@@ -5,6 +5,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
 import Select from "@material-ui/core/Select";
+import textFieldStyle from "../../utils/textFieldStyle";
+import { makeStyles } from "@material-ui/core";
+import { createStyles } from "@material-ui/core";
 import styles from "./ItemsFilter.module.css";
 
 function ItemsFilter({ searchTerm, setSearchTerm, filter, setFilter }) {
@@ -14,6 +17,9 @@ function ItemsFilter({ searchTerm, setSearchTerm, filter, setFilter }) {
     { label: "Exp. Date", type: "exp" },
     { label: "Date added", type: "date" },
   ];
+
+  const useStyles = makeStyles((theme) => createStyles(textFieldStyle));
+  const classes = useStyles();
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -37,10 +43,19 @@ function ItemsFilter({ searchTerm, setSearchTerm, filter, setFilter }) {
             label="Search by name"
             variant="outlined"
             autoComplete="off"
+            classes={{
+              root: classes.filters,
+            }}
             value={searchTerm}
             onChange={handleSearchChange}
           />
-          <FormControl variant="outlined" className={styles.filter}>
+          <FormControl
+            variant="outlined"
+            className={styles.filter}
+            classes={{
+              root: classes.filters,
+            }}
+          >
             <InputLabel id="demo-simple-select-outlined-label">
               Sort by
             </InputLabel>
