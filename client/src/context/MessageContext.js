@@ -1,9 +1,17 @@
 import React, { createContext, useState } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
+import SnackbarContent from "@material-ui/core/SnackbarContent";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
+import Slide from "@material-ui/core/Slide";
+import brandBtnStyle from "../utils/brandBtnStyle";
+import messageStyle from "../utils/messageStyle";
 export const MessageContext = createContext({});
+
+function TransitionUp(props) {
+  return <Slide {...props} direction="up" />;
+}
 
 export const MessageProvider = (props) => {
   const [message, setMessage] = useState({
@@ -38,48 +46,62 @@ export const MessageProvider = (props) => {
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "left",
+            horizontal: "center",
           }}
           open={open}
           autoHideDuration={8000}
+          TransitionComponent={TransitionUp}
           onClose={handleClose}
-          message={message.msg}
-          action={
-            <>
-              {message.status === "warning" && (
-                <div>
-                  <Button
-                    variant="contained"
-                    color="primary"
+        >
+          <SnackbarContent
+            message={message.msg}
+            style={messageStyle}
+            action={
+              <>
+                {message.status === "warning" && (
+                  <div>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      onClick={triggerCallback}
+                      style={{
+                        ...brandBtnStyle,
+                        backgroundColor: "#57cfcb",
+                        marginRight: "10px",
+                      }}
+                    >
+                      Yes
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="small"
+                      onClick={handleClose}
+                      style={{
+                        ...brandBtnStyle,
+                        backgroundColor: "#ed5f5f",
+                        marginRight: "10px",
+                      }}
+                    >
+                      No
+                    </Button>
+                  </div>
+                )}
+                {message.status !== "warning" && (
+                  <IconButton
                     size="small"
-                    onClick={triggerCallback}
-                    style={{ marginRight: "10px" }}
-                  >
-                    Yes
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
+                    aria-label="close"
+                    color="inherit"
                     onClick={handleClose}
                   >
-                    No
-                  </Button>
-                </div>
-              )}
-              {message.status !== "warning" && (
-                <IconButton
-                  size="small"
-                  aria-label="close"
-                  color="inherit"
-                  onClick={handleClose}
-                >
-                  <CloseIcon fontSize="small" />
-                </IconButton>
-              )}
-            </>
-          }
-        />
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                )}
+              </>
+            }
+          />
+        </Snackbar>
       </div>
     </MessageContext.Provider>
   );

@@ -88,9 +88,8 @@ function App() {
   );
 }
 
-//Rename app to food supplies manager
+// Rename app to food supplies manager
 // Add bought and expires info to each item
-// Change trush can icon for delete
-// Add scroll top icon
+// Add home page components
 
 export default App;

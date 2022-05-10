@@ -32,17 +32,25 @@ const textFieldStyle = {
       },
       "&.Mui-focused fieldset": {
         color: "red",
+        backgroundColor: "transparent",
         border: "2px solid #57CFCB",
         borderRadius: "18px",
       },
       "&.MuiFormLabel-root.Mui-focused": {
         color: "red",
+        backgroundColor: "transparent",
         borderRadius: "18px",
       },
     },
     "& label": {
       "&.Mui-focused": {
         color: "#57CFCB",
+        backgroundColor: "transparent",
+      },
+    },
+    "& .MuiSelect-select": {
+      "&:focus": {
+        backgroundColor: "transparent",
       },
     },
   },
