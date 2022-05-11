@@ -18,11 +18,14 @@ const UserSchema = new Schema({
   list: [
     {
       product: { type: Schema.Types.ObjectId, ref: "Product" },
+      added: {
+        type: Date,
+        default: new Date(),
+      },
       expires: {
         type: Date,
         default: new Date(),
       },
-      // expires: String,
     },
   ],
 });

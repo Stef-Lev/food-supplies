@@ -88,8 +88,8 @@ function App() {
   );
 }
 
-// Rename app to food supplies manager
 // Add bought and expires info to each item
 // Add home page components
+// Rename to Amalthea food inventory app
 
 export default App;

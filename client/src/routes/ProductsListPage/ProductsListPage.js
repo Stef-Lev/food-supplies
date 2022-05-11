@@ -125,6 +125,7 @@ function ProductsListPage() {
                 onClick={removeProductFromList}
               />
             ))}
+        {!byNameResults.length && <p>No products added yet.</p>}
         {!byNameResults && <p>No products added</p>}
       </div>
       <AddIconButton handleClick={handleModalOpen} />

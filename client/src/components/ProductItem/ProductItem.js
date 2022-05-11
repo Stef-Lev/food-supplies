@@ -10,6 +10,7 @@ function ProductItem({ item, onClick }) {
         <h3 className={styles.product_title}>{item.product.title}</h3>
         <p className={styles.product_expires}>
           Expires: {format(new Date(item.expires), "dd/MM/yyyy")}
+          Added: {format(new Date(item.added), "dd/MM/yyyy")}
         </p>
       </div>
       <DeleteForeverIcon onClick={() => onClick(item._id)} />
