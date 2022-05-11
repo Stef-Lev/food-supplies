@@ -1,23 +1,11 @@
 .home_page {
   position: relative;
 }
-/* .color_path {
-  position: absolute;
-  overflow: hidden;
-  overflow-wrap: normal;
-  top: -70px;
-  left: -20px;
-  z-index: -1;
-  background-color: #80dbd8;
-  height: 30%;
-  width: 200px;
-  clip-path: ellipse(60% 70% at 35% 0%);
-} */
 
 .svg_container {
-  padding: inherit;
   position: absolute;
-  top: -20px;
+  top: -50px;
+  left: -20px;
   z-index: -1;
 }
 
@@ -41,9 +29,26 @@
   flex-wrap: wrap;
 }
 
-/* @media only screen and (min-width: 600px) {
+@media only screen and (max-width: 599px) {
+  .mobile {
+    display: block;
+  }
+  .desktop {
+    display: none;
+  }
+  .color_path {
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
   .color_path {
     width: 500px;
-    clip-path: ellipse(30% 70% at 35% 0%);
   }
-} */
+}

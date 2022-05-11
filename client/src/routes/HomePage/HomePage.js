@@ -8,7 +8,21 @@ function HomePage() {
     <div className={styles.home_page}>
       <div className={styles.svg_container}>
         <svg height="100%" width="200px" className={styles.color_path}>
-          <circle cx="50" cy="50" r="80" fill="#80DBD8" />
+          <circle
+            cx="20%"
+            cy="40"
+            r="80"
+            fill="#80DBD8"
+            className={styles.mobile}
+          />
+          <circle
+            cx="150"
+            cy="40"
+            r="80"
+            width="500px"
+            fill="#80DBD8"
+            className={styles.desktop}
+          />
         </svg>
       </div>
 

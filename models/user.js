@@ -15,17 +15,22 @@ const UserSchema = new Schema({
       message: "Passwords don't match.",
     },
   },
-  list: [
+  lists: [
     {
-      product: { type: Schema.Types.ObjectId, ref: "Product" },
-      added: {
-        type: Date,
-        default: new Date(),
-      },
-      expires: {
-        type: Date,
-        default: new Date(),
-      },
+      listName: String,
+      items: [
+        {
+          product: { type: Schema.Types.ObjectId, ref: "Product" },
+          added: {
+            type: Date,
+            default: new Date(),
+          },
+          expires: {
+            type: Date,
+            default: new Date(),
+          },
+        },
+      ],
     },
   ],
 });

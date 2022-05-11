@@ -1,8 +1,8 @@
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeIcon from "@material-ui/icons/Home";
-import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import QueueIcon from "@material-ui/icons/Queue";
-import TableChartIcon from "@material-ui/icons/TableChart";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import GridOnIcon from "@material-ui/icons/GridOn";
 
 const headerData = [
   {
@@ -17,12 +17,12 @@ const headerData = [
   },
   {
     label: "Products List",
-    icon: <FormatListNumberedIcon />,
+    icon: <AssignmentIcon />,
     href: `/user/list`,
   },
   {
     label: "Overview",
-    icon: <TableChartIcon />,
+    icon: <GridOnIcon />,
     href: `/user/overview`,
   },
   {

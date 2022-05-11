@@ -1,6 +1,6 @@
-import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import QueueIcon from "@material-ui/icons/Queue";
-import TableChartIcon from "@material-ui/icons/TableChart";
+import GridOnIcon from "@material-ui/icons/GridOn";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 
 const tileColorsArray = ["#F487B6", "#4A76CF", "#57CFCB", "#F7C196"];
 
@@ -12,17 +12,17 @@ const homeTilesData = [
   },
   {
     label: "Products List",
-    icon: <FormatListNumberedIcon style={{ color: tileColorsArray[1] }} />,
+    icon: <AssignmentIcon style={{ color: tileColorsArray[1] }} />,
     href: `/user/list`,
   },
   {
     label: "Overview",
-    icon: <TableChartIcon style={{ color: tileColorsArray[2] }} />,
+    icon: <GridOnIcon style={{ color: tileColorsArray[2] }} />,
     href: `/user/overview`,
   },
   {
     label: "Overview",
-    icon: <TableChartIcon style={{ color: tileColorsArray[3] }} />,
+    icon: <GridOnIcon style={{ color: tileColorsArray[3] }} />,
     href: `/user/overview`,
   },
 ];
