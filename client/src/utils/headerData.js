@@ -18,7 +18,7 @@ const headerData = [
   {
     label: "Products List",
     icon: <AssignmentIcon />,
-    href: `/user/list`,
+    href: `/user/lists`,
   },
   {
     label: "Overview",

@@ -2,6 +2,19 @@ const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
 const Product = require("../models/product");
 
+exports.addList = catchAsync(async (req, res) => {
+  const { barcode, expires } = req.body;
+  const user = await User.findById(req.params.id);
+  const product = await Product.findOne({ barcode: barcode });
+  if (product) {
+    user.list.push({ product: product, expires: expires });
+    await user.save();
+    res.status(200).json({ product });
+  } else {
+    res.status(404).json({ status: "Product not found" });
+  }
+});
+
 exports.addListProduct = catchAsync(async (req, res) => {
   const { barcode, expires } = req.body;
   const user = await User.findById(req.params.id);
@@ -24,12 +37,12 @@ exports.removeListProduct = catchAsync(async (req, res) => {
 });
 
 exports.getPlayerData = catchAsync(async (req, res) => {
-  const user = await User.findById(req.params.id).populate("list.product");
+  const user = await User.findById(req.params.id).populate("lists");
   res.status(200).json({ user });
 });
 
 exports.getOverview = catchAsync(async (req, res) => {
-  const user = await User.findById(req.params.id).populate("list.product");
+  const user = await User.findById(req.params.id).populate("lists");
   const obj = {};
   user.list.map((item) => {
     const id = item.product._id;

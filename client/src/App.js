@@ -7,6 +7,7 @@ import RedirectLoginPage from "./routes/RedirectLoginPage/RedirectLoginPage";
 import SignupPage from "./routes/SignupPage/SignupPage";
 import AddProductsPage from "./routes/AddProductsPage/AddProductsPage";
 import ProductsListPage from "./routes/ProductsListPage/ProductsListPage";
+import ListsPage from "./routes/ListsPage/ListsPage";
 import OverviewPage from "./routes/OverviewPage/OverviewPage";
 import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
@@ -45,7 +46,16 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/user/list"
+                  path="/user/lists"
+                  element={
+                    <PrivateRoutePage>
+                      <ListsPage />
+                    </PrivateRoutePage>
+                  }
+                />
+                <Route
+                  exact
+                  path="/user/list/:id"
                   element={
                     <PrivateRoutePage>
                       <ProductsListPage />

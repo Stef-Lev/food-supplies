@@ -17,6 +17,7 @@ const UserSchema = new Schema({
   },
   lists: [
     {
+      id: String,
       listName: String,
       items: [
         {

@@ -13,7 +13,7 @@ const homeTilesData = [
   {
     label: "Products List",
     icon: <AssignmentIcon style={{ color: tileColorsArray[1] }} />,
-    href: `/user/list`,
+    href: `/user/lists`,
   },
   {
     label: "Overview",
