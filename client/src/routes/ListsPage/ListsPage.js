@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import uuid from "react-uuid";
 import { useNavigate } from "react-router-dom";
 import ListItem from "../../components/ListItem/ListItem";
+import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import EditIcon from "@material-ui/icons/Edit";
@@ -18,18 +18,16 @@ function ListsPage() {
   const navigate = useNavigate();
   const [isEditMode, setIsEditMode] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [lists, setLists] = useState([
-    { id: "0123", name: "Drawer", contains: 12 },
-    { id: "0456", name: "Emergency", contains: 34 },
-    { id: "0789", name: "Fridge", contains: 0 },
-  ]);
+  const [lists, setLists] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const [newList, setNewList] = useState({ listName: "", id: "", items: [] });
+  const [newList, setNewList] = useState({ listName: "", items: [] });
 
   useEffect(() => {
-    // fetchMethod("get", `/api/user/${user._id}`).then((item) =>
-    //   setUserList(item.user.list)
-    // );
+    fetchMethod("get", `/api/user/${user._id}`).then((item) => {
+      setLists(item.user.lists);
+      setLoading(false);
+    });
   }, [user._id]);
 
   const handleModalOpen = () => {
@@ -38,7 +36,7 @@ function ListsPage() {
 
   const handleModalClose = () => {
     setModalOpen(false);
-    setNewList({ listName: "", id: "", items: [] });
+    setNewList({ listName: "", items: [] });
   };
 
   const handleInputChange = (event, field) => {
@@ -47,40 +45,29 @@ function ListsPage() {
 
   const goToList = (id) => {
     navigate(`/user/list/${id}`);
-    // fetchMethod("post", `/api/user/${user._id}/addproduct`, product).then(
-    //   () => {
-    //     handleModalClose();
-    //     fetchMethod("get", `/api/user/${user._id}`).then((item) =>
-    //       setUserList(item.user.list)
-    //     );
-    //   }
-    // );
   };
 
   const addList = () => {
-    // fetchMethod("post", `/api/user/${user._id}/addproduct`, product).then(
-    //   () => {
-    //     handleModalClose();
-    //     fetchMethod("get", `/api/user/${user._id}`).then((item) =>
-    //       setUserList(item.user.list)
-    //     );
-    //   }
-    // );
+    fetchMethod("post", `/api/user/${user._id}/addlist`, newList).then(() => {
+      handleModalClose();
+      fetchMethod("get", `/api/user/${user._id}`).then((item) =>
+        setLists(item.user.lists)
+      );
+    });
   };
 
   const removeList = (id) => {
-    // showMessage("warning", "Delete?", () => {
-    //   fetchMethod("delete", `/api/user/${user._id}/deleteproduct/${id}`).then(
-    //     () => {
-    //       fetchMethod("get", `/api/user/${user._id}`).then((item) =>
-    //         setUserList(item.user.list)
-    //       );
-    //     }
-    //   );
-    // });
+    showMessage("warning", "Delete list?", () => {
+      fetchMethod("delete", `/api/user/${user._id}/deletelist/${id}`).then(
+        () => {
+          fetchMethod("get", `/api/user/${user._id}`).then((item) => {
+            setLists(item.user.lists);
+            setIsEditMode(false);
+          });
+        }
+      );
+    });
   };
-
-  console.log(newList);
 
   return (
     <>
@@ -113,16 +100,19 @@ function ListsPage() {
             <EditIcon style={{ color: isEditMode ? "rgb(237, 95, 95)" : "" }} />
           </IconButton>
         </div>
+        {loading && <AnimatedLoader />}
         {lists.length > 0 &&
           lists.map((item, index) => (
             <ListItem
               key={index + 1}
               item={item}
-              onClick={() => (isEditMode ? removeList() : goToList(item.id))}
+              onClick={() =>
+                isEditMode ? removeList(item._id) : goToList(item._id)
+              }
               isEdited={isEditMode}
             />
           ))}
-        {!lists.length && <p>No products added yet.</p>}
+        {!lists.length && !loading && <p>No lists added yet.</p>}
         <AddListModal
           isOpen={modalOpen}
           onClose={handleModalClose}

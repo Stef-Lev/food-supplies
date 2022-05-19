@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 import Fuse from "fuse.js";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import AddIconButton from "../../components/AddIconButton/AddIconButton";
@@ -14,16 +16,18 @@ import styles from "./ProductsListPage.module.css";
 function ProductsListPage() {
   const { user } = useContext(UserContext);
   const { showMessage } = useContext(MessageContext);
+  const { listid } = useParams();
   const audio = new Audio(soundfile);
   const [modalOpen, setModalOpen] = useState(false);
   const [scannerOn, setScannerOn] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState({
     barcode: "",
     expires: new Date(),
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("");
-  const [userList, setUserList] = useState(user.list);
+  const [userList, setUserList] = useState([]);
 
   const fuse = new Fuse(userList, {
     keys: ["product.title"],
@@ -36,10 +40,19 @@ function ProductsListPage() {
     ? results.filter((item) => item.score < 0.5).map((item) => item.item)
     : userList;
 
+  const getProductList = (arr) => {
+    if (arr.length > 0) {
+      const foundList = arr.find((item) => item._id === listid);
+      return foundList.items;
+    }
+    return [];
+  };
+
   useEffect(() => {
-    fetchMethod("get", `/api/user/${user._id}`).then((item) =>
-      setUserList(item.user.list)
-    );
+    fetchMethod("get", `/api/user/${user._id}`).then((data) => {
+      setUserList(getProductList(data.user.lists));
+      setLoading(false);
+    });
   }, [user._id]);
 
   const handleScannedResult = (error, result) => {
@@ -73,25 +86,28 @@ function ProductsListPage() {
   };
 
   const addProductToList = () => {
-    fetchMethod("post", `/api/user/${user._id}/addproduct`, product).then(
-      () => {
-        handleModalClose();
-        fetchMethod("get", `/api/user/${user._id}`).then((item) =>
-          setUserList(item.user.list)
-        );
-      }
-    );
+    fetchMethod(
+      "post",
+      `/api/user/${user._id}/addproduct/${listid}`,
+      product
+    ).then(() => {
+      handleModalClose();
+      fetchMethod("get", `/api/user/${user._id}`).then((data) =>
+        setUserList(getProductList(data.user.lists))
+      );
+    });
   };
 
   const removeProductFromList = (id) => {
-    showMessage("warning", "Delete?", () => {
-      fetchMethod("delete", `/api/user/${user._id}/deleteproduct/${id}`).then(
-        () => {
-          fetchMethod("get", `/api/user/${user._id}`).then((item) =>
-            setUserList(item.user.list)
-          );
-        }
-      );
+    showMessage("warning", "Delete product?", () => {
+      fetchMethod(
+        "delete",
+        `/api/user/${user._id}/list/${listid}/product/${id}`
+      ).then(() => {
+        fetchMethod("get", `/api/user/${user._id}`).then((data) =>
+          setUserList(getProductList(data.user.lists))
+        );
+      });
     });
   };
 
@@ -125,8 +141,8 @@ function ProductsListPage() {
                 onClick={removeProductFromList}
               />
             ))}
-        {!byNameResults.length && <p>No products added yet.</p>}
-        {!byNameResults && <p>No products added</p>}
+        {!byNameResults.length && !loading && <p>No products added yet.</p>}
+        {loading && <AnimatedLoader />}
       </div>
       <AddIconButton handleClick={handleModalOpen} />
       <ScrollTopButton />

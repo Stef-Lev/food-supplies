@@ -17,9 +17,9 @@ function ListItem({ item, onClick, isEdited }) {
           <AssignmentIcon style={{ color: "white" }} />
         </div>
         <div>
-          <h3 className={styles.list_title}>{item.name}</h3>
+          <h3 className={styles.list_title}>{item.listName}</h3>
           <p>
-            <em>{`${item.contains || "No"} products`}</em>
+            <em>{`${item.items.length || "No"} products`}</em>
           </p>
         </div>
       </div>

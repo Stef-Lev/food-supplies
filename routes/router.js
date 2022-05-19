@@ -9,10 +9,15 @@ module.exports = function (app) {
   app.get("/api/auth/logout", authRoute.logoutUser);
   app.get("/api/auth/user", authRoute.checkUser);
   // User
-  app.get("/api/user/:id", userRoute.getPlayerData);
+  app.get("/api/user/:uid", userRoute.getPlayerData);
   app.get("/api/user/:id/overview", userRoute.getOverview);
-  app.post("/api/user/:id/addproduct", userRoute.addListProduct);
-  app.delete("/api/user/:id/deleteproduct/:pid", userRoute.removeListProduct);
+  app.post("/api/user/:uid/addList", userRoute.addList);
+  app.post("/api/user/:uid/addproduct/:listid", userRoute.addListProduct);
+  app.delete("/api/user/:uid/deletelist/:listid", userRoute.removeList);
+  app.delete(
+    "/api/user/:uid/list/:listid/product/:pid",
+    userRoute.removeListProduct
+  );
   // Product
   app.post("/api/product/add", productRoute.add);
 };

@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import styles from "./AddListModal.module.css";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core";
 import { createStyles } from "@material-ui/core";
 import textFieldStyle from "../../utils/textFieldStyle";
