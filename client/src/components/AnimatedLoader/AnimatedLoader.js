@@ -1,5 +1,6 @@
 import React from "react";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import styles from "./AnimatedLoader.module.css";
 import { makeStyles } from "@material-ui/core";
 
 function AnimatedLoader() {
@@ -17,7 +18,7 @@ function AnimatedLoader() {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={styles.loader_container}>
       <LinearProgress color="primary" className={classes.root} />
     </div>
   );

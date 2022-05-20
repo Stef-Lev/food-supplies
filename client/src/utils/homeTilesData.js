@@ -1,6 +1,7 @@
 import QueueIcon from "@material-ui/icons/Queue";
 import GridOnIcon from "@material-ui/icons/GridOn";
 import AssignmentIcon from "@material-ui/icons/Assignment";
+import TouchAppIcon from "@material-ui/icons/TouchApp";
 
 const tileColorsArray = ["#F487B6", "#4A76CF", "#57CFCB", "#F7C196"];
 
@@ -21,9 +22,9 @@ const homeTilesData = [
     href: `/user/overview`,
   },
   {
-    label: "Overview",
-    icon: <GridOnIcon style={{ color: tileColorsArray[3] }} />,
-    href: `/user/overview`,
+    label: "Test",
+    icon: <TouchAppIcon style={{ color: tileColorsArray[3] }} />,
+    href: `/user/test`,
   },
 ];
 

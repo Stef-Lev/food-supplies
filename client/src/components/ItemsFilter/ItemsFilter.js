@@ -60,7 +60,6 @@ function ItemsFilter({ searchTerm, setSearchTerm, filter, setFilter }) {
               Sort by
             </InputLabel>
             <Select
-              labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
               value={filter}
               onChange={handleSelectChange}

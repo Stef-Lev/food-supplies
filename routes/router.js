@@ -10,7 +10,7 @@ module.exports = function (app) {
   app.get("/api/auth/user", authRoute.checkUser);
   // User
   app.get("/api/user/:uid", userRoute.getPlayerData);
-  app.get("/api/user/:id/overview", userRoute.getOverview);
+  app.get("/api/user/:uid/list/:listid", userRoute.getListData);
   app.post("/api/user/:uid/addList", userRoute.addList);
   app.post("/api/user/:uid/addproduct/:listid", userRoute.addListProduct);
   app.delete("/api/user/:uid/deletelist/:listid", userRoute.removeList);

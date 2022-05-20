@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { headerData } from "../../utils/headerData";
 // import Link from "@material-ui/core/Link";
-import { UserContext } from "../../context/UserContext";
+// import { UserContext } from "../../context/UserContext";
 import useLogout from "../../utils/useLogout";
 
 const useStyles = makeStyles({
@@ -20,7 +20,6 @@ const useStyles = makeStyles({
 
 const Header = () => {
   const [mobileView, setMobileView] = useState(false);
-  const { user } = useContext(UserContext);
   const classes = useStyles();
   const { logoutUser } = useLogout();
 
@@ -43,7 +42,7 @@ const Header = () => {
     return label === "Logout";
   };
 
-  const displayDesktop = () => {
+  const displayHeader = () => {
     return (
       <Toolbar>
         <div style={{ width: "100%" }}>
@@ -107,12 +106,7 @@ const Header = () => {
     });
   };
 
-  console.log("USER", user);
-  return (
-    <AppBar className={classes.header}>
-      {mobileView ? displayDesktop() : displayDesktop()}
-    </AppBar>
-  );
+  return <AppBar className={classes.header}>{displayHeader()}</AppBar>;
 };
 
 export default Header;

@@ -81,7 +81,10 @@ exports.checkUser = catchAsync(async (req, res, next) => {
   if (req.cookies.jwt_food_supplies_token) {
     const token = req.cookies.jwt_food_supplies_token;
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    currentUser = await User.findById(decoded.id).populate("lists");
+    currentUser = await User.findById(decoded.id).populate({
+      path: "lists.items.product",
+      model: "Product",
+    });
   } else {
     currentUser = null;
   }

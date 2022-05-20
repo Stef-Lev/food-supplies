@@ -44,7 +44,6 @@ function AddProductsPage() {
   const submitProduct = (e) => {
     e.preventDefault();
     fetchMethod("post", "/api/product/add", product).then((res) => {
-      console.log(res);
       setProduct({
         title: "",
         barcode: "",

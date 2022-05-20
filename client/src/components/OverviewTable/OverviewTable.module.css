@@ -1,3 +1,12 @@
 .thead {
   font-weight: bold;
+  color: #fff !important;
+  font-weight: bold !important;
+}
+.thead .left {
+  width: 80%;
+}
+
+.thead .right {
+  width: 20%;
 }

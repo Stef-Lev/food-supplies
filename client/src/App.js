@@ -17,7 +17,7 @@ import { MessageProvider } from "./context/MessageContext";
 
 function App() {
   const { user, setUser, isLoading } = useFindUser();
-  // console.log("USER_CONTEXT", user);
+  console.log("USER_CONTEXT", user);
   return (
     <div className="App">
       <Router>
@@ -98,8 +98,10 @@ function App() {
   );
 }
 
-// Add bought and expires info to each item
-// Add home page components
-// Rename to Amalthea food inventory app
+//Add rename to edit functionality
+//Enrich the ui of the add product section
+//Add language support
+//Add push notifications 1 week before something expires
+//Refactor
 
 export default App;

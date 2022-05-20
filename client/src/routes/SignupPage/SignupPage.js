@@ -21,7 +21,6 @@ function SignupPage() {
   const classes = useStyles();
 
   const handleSignup = async (e) => {
-    console.log("SIGN", e);
     e.preventDefault();
     await signupUser(user);
   };
