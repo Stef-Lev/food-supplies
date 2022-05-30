@@ -26,6 +26,8 @@
   border-radius: 18px;
   padding: 20px;
   box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  bottom: 20px;
 }
 
 .csv_container h3 {

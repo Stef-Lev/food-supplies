@@ -118,3 +118,14 @@ exports.getListData = catchAsync(async (req, res) => {
 
   res.status(200).json({ list: foundList, quantities: data });
 });
+
+exports.updateList = catchAsync(async (req, res) => {
+  const user = await User.findById(req.params.uid).populate({
+    path: "lists.items.product",
+    model: "Product",
+  });
+  const foundList = user.lists.find((list) => list._id == req.params.listid);
+  foundList.listName = req.body.listName;
+  await user.save();
+  res.status(200).json({ list: foundList });
+});

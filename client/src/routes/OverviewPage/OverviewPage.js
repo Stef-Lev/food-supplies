@@ -80,12 +80,12 @@ function OverviewPage() {
       {user.lists.length === 0 && <p>No lists added yet</p>}
       {user.lists.length > 0 && (
         <FormControl
-          fullWidth
           variant="outlined"
           className={styles.dropdown}
           classes={{
             root: classes.filters,
           }}
+          style={{ width: "60%" }}
         >
           <InputLabel id="demo-simple-select-outlined-label">
             Select list
@@ -128,6 +128,9 @@ function OverviewPage() {
             </div>
           </div>
         </>
+      )}
+      {!loading && quantityData.length === 0 && (
+        <p>This list has no products added</p>
       )}
     </div>
   );

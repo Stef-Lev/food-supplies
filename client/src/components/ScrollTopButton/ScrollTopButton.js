@@ -24,13 +24,17 @@ function ScrollTopButton() {
   const classes = useStyles();
 
   useEffect(() => {
+    let mounted = true;
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        setShowTopBtn(true);
-      } else {
-        setShowTopBtn(false);
+      if (mounted) {
+        if (window.scrollY > 300) {
+          setShowTopBtn(true);
+        } else {
+          setShowTopBtn(false);
+        }
       }
     });
+    return () => (mounted = false);
   }, []);
 
   const goToTop = () => {

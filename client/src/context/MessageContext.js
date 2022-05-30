@@ -21,7 +21,7 @@ export const MessageProvider = (props) => {
   });
   const [open, setOpen] = useState(false);
 
-  const handleClose = (event, reason) => {
+  const handleCloseMessage = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
@@ -36,11 +36,11 @@ export const MessageProvider = (props) => {
 
   const triggerCallback = () => {
     message.callback();
-    handleClose();
+    handleCloseMessage();
   };
 
   return (
-    <MessageContext.Provider value={{ showMessage }}>
+    <MessageContext.Provider value={{ showMessage, handleCloseMessage }}>
       {props.children}
       <div>
         <Snackbar
@@ -51,7 +51,7 @@ export const MessageProvider = (props) => {
           open={open}
           autoHideDuration={8000}
           TransitionComponent={TransitionUp}
-          onClose={handleClose}
+          onClose={handleCloseMessage}
         >
           <SnackbarContent
             message={message.msg}
@@ -77,7 +77,7 @@ export const MessageProvider = (props) => {
                       variant="contained"
                       color="secondary"
                       size="small"
-                      onClick={handleClose}
+                      onClick={handleCloseMessage}
                       style={{
                         ...brandBtnStyle,
                         backgroundColor: "#ed5f5f",
@@ -93,7 +93,7 @@ export const MessageProvider = (props) => {
                     size="small"
                     aria-label="close"
                     color="inherit"
-                    onClick={handleClose}
+                    onClick={handleCloseMessage}
                   >
                     <CloseIcon fontSize="small" />
                   </IconButton>

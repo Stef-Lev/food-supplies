@@ -10,18 +10,20 @@ import { fetchMethod } from "../../utils/fetchMethod";
 import { UserContext } from "../../context/UserContext";
 import { MessageContext } from "../../context/MessageContext";
 import AddListModal from "../../components/AddListModal/AddListModal";
+import EditListModal from "../../components/EditListModal/EditListModal";
 import styles from "./ListsPage.module.css";
 
 function ListsPage() {
   const { user } = useContext(UserContext);
-  const { showMessage } = useContext(MessageContext);
+  const { showMessage, handleCloseMessage } = useContext(MessageContext);
   const navigate = useNavigate();
   const [isEditMode, setIsEditMode] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalAddOpen, setModalAddOpen] = useState(false);
   const [lists, setLists] = useState([]);
+  const [modalEditOpen, setModalEditOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-
   const [newList, setNewList] = useState({ listName: "", items: [] });
+  const [editedList, setEditedList] = useState({});
 
   useEffect(() => {
     fetchMethod("get", `/api/user/${user._id}`).then((item) => {
@@ -30,17 +32,42 @@ function ListsPage() {
     });
   }, [user._id]);
 
-  const handleModalOpen = () => {
-    setModalOpen(true);
+  const handleModalOpen = (type) => {
+    switch (type) {
+      case "add":
+        setModalAddOpen(true);
+        break;
+      case "edit":
+        setModalEditOpen(true);
+        break;
+      default:
+        return;
+    }
   };
 
-  const handleModalClose = () => {
-    setModalOpen(false);
-    setNewList({ listName: "", items: [] });
+  const handleModalClose = (type) => {
+    switch (type) {
+      case "add":
+        setModalAddOpen(false);
+        setNewList({ listName: "", items: [] });
+        handleCloseMessage();
+        break;
+      case "edit":
+        setModalEditOpen(false);
+        handleCloseMessage();
+        break;
+      default:
+        return;
+    }
   };
 
   const handleInputChange = (event, field) => {
     setNewList({ ...newList, [field]: event.target.value });
+  };
+
+  const handleUpdatedListName = (event) => {
+    const currentList = editedList;
+    setEditedList({ ...currentList, listName: event.target.value });
   };
 
   const goToList = (id) => {
@@ -49,7 +76,7 @@ function ListsPage() {
 
   const addList = () => {
     fetchMethod("post", `/api/user/${user._id}/addlist`, newList).then(() => {
-      handleModalClose();
+      handleModalClose("add");
       fetchMethod("get", `/api/user/${user._id}`).then((item) =>
         setLists(item.user.lists)
       );
@@ -63,9 +90,33 @@ function ListsPage() {
           fetchMethod("get", `/api/user/${user._id}`).then((item) => {
             setLists(item.user.lists);
             setIsEditMode(false);
+            handleModalClose("edit");
           });
         }
       );
+    });
+  };
+
+  const openEditModal = (id) => {
+    if (isEditMode) {
+      const foundList = lists.find((item) => item._id === id);
+      setEditedList(foundList);
+      handleModalOpen("edit");
+    }
+  };
+
+  const editList = (id) => {
+    console.log(id);
+    fetchMethod(
+      "update",
+      `/api/user/${user._id}/editlist/${id}`,
+      editedList
+    ).then(() => {
+      fetchMethod("get", `/api/user/${user._id}`).then((item) => {
+        setLists(item.user.lists);
+        setIsEditMode(false);
+        handleModalClose("edit");
+      });
     });
   };
 
@@ -82,7 +133,7 @@ function ListsPage() {
               background: "#57CFCB",
               visibility: isEditMode ? "hidden" : "visible",
             }}
-            onClick={handleModalOpen}
+            onClick={() => handleModalOpen("add")}
           >
             Add new list
           </Button>
@@ -107,18 +158,26 @@ function ListsPage() {
               key={index + 1}
               item={item}
               onClick={() =>
-                isEditMode ? removeList(item._id) : goToList(item._id)
+                isEditMode ? openEditModal(item._id) : goToList(item._id)
               }
               isEdited={isEditMode}
             />
           ))}
         {!lists.length && !loading && <p>No lists added yet.</p>}
         <AddListModal
-          isOpen={modalOpen}
-          onClose={handleModalClose}
+          isOpen={modalAddOpen}
+          onClose={() => handleModalClose("add")}
           list={newList}
           onInputChange={handleInputChange}
           addList={addList}
+        />
+        <EditListModal
+          isOpen={modalEditOpen}
+          onClose={() => handleModalClose("edit")}
+          onInputChange={handleUpdatedListName}
+          list={editedList}
+          onRemoveList={removeList}
+          onSave={editList}
         />
       </div>
     </>

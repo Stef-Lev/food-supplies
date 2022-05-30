@@ -12,7 +12,7 @@ function OverviewTable({ products }) {
   return (
     <TableContainer component={Paper} style={{ borderRadius: "18px" }}>
       <Table aria-label="games table" size="small">
-        <TableHead style={{ backgroundColor: "#4a76cf" }}>
+        <TableHead style={{ backgroundColor: "#064960" }}>
           <TableRow>
             <TableCell
               align="left"

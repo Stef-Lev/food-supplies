@@ -49,10 +49,14 @@ function ProductsListPage() {
   };
 
   useEffect(() => {
+    let mounted = true;
     fetchMethod("get", `/api/user/${user._id}`).then((data) => {
-      setUserList(getProductList(data.user.lists));
-      setLoading(false);
+      if (mounted) {
+        setUserList(getProductList(data.user.lists));
+        setLoading(false);
+      }
     });
+    return () => (mounted = true);
   }, [user._id]);
 
   const handleScannedResult = (error, result) => {

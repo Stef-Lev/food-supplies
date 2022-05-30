@@ -1,5 +1,6 @@
 const messageStyle = {
-  backgroundColor: "#064960",
+  backgroundColor: "#fff",
+  color: "black",
   borderRadius: "18px",
 };
 

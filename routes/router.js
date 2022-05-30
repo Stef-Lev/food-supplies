@@ -18,6 +18,7 @@ module.exports = function (app) {
     "/api/user/:uid/list/:listid/product/:pid",
     userRoute.removeListProduct
   );
+  app.put("/api/user/:uid/editlist/:listid", userRoute.updateList);
   // Product
   app.post("/api/product/add", productRoute.add);
 };
