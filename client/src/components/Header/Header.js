@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-// import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { headerData } from "../../utils/headerData";
-// import Link from "@material-ui/core/Link";
-// import { UserContext } from "../../context/UserContext";
 import useLogout from "../../utils/useLogout";
 
 const useStyles = makeStyles({

@@ -18,6 +18,10 @@
   color: #010f13;
 }
 
-.product_expires {
+.product_subtitle {
   font-style: italic;
+  font-size: 0.9rem;
+}
+.product_value {
+  font-weight: bold;
 }

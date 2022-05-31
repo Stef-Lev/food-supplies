@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import styles from "./EditListModal.module.css";
 import Modal from "@material-ui/core/Modal";
@@ -21,7 +21,6 @@ function EditListModal({
   const useStyles = makeStyles((theme) => createStyles(textFieldStyle));
   const classes = useStyles();
   const listId = list._id;
-  console.log(list);
   return (
     <Modal
       aria-labelledby="transition-modal-title"

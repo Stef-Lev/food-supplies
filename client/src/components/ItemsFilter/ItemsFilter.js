@@ -12,7 +12,7 @@ import styles from "./ItemsFilter.module.css";
 
 function ItemsFilter({ searchTerm, setSearchTerm, filter, setFilter }) {
   const sortBy = [
-    { label: "Clear", type: "clear" },
+    { label: "None", type: "none" },
     { label: "Name", type: "name" },
     { label: "Exp. Date", type: "exp" },
     { label: "Date added", type: "date" },

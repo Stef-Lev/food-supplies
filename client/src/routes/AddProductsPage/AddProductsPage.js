@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import Button from "@material-ui/core/Button";
 import NewProductForm from "../../components/NewProductForm/NewProductForm";
+import CameraAltIcon from "@material-ui/icons/CameraAlt";
 import TextField from "@material-ui/core/TextField";
 import { fetchMethod } from "../../utils/fetchMethod";
 import textFieldStyle from "../../utils/textFieldStyle";
@@ -53,6 +54,9 @@ function AddProductsPage() {
 
   return (
     <div>
+      <div>
+        <p className={styles.text}>Click to scan a product with your camera.</p>
+      </div>
       <div className={styles.buttons_flex}>
         <Button
           variant="contained"
@@ -76,10 +80,6 @@ function AddProductsPage() {
       </div>
       {scannerOn && (
         <div className={styles.camera_frame}>
-          {/* <div className={styles.barcode_target}>
-            <div className={styles.target_frame}></div>
-          </div> */}
-
           <div className={styles.barcode_input}>
             <BarcodeScannerComponent width={260} onUpdate={handleUpdate} />
             <TextField
@@ -94,6 +94,15 @@ function AddProductsPage() {
               onChange={(e) => handleInputChange(e, "barcode")}
               fullWidth
             />
+          </div>
+        </div>
+      )}
+      {!scannerOn && (
+        <div className={styles.camera_frame}>
+          <div className={styles.barcode_input}>
+            <div className={styles.video_placeholder}>
+              <CameraAltIcon className={styles.camera_icon} />
+            </div>
           </div>
         </div>
       )}

@@ -90,16 +90,16 @@ function ProductsListPage() {
   };
 
   const addProductToList = () => {
-    fetchMethod(
-      "post",
-      `/api/user/${user._id}/addproduct/${listid}`,
-      product
-    ).then(() => {
-      handleModalClose();
-      fetchMethod("get", `/api/user/${user._id}`).then((data) =>
-        setUserList(getProductList(data.user.lists))
-      );
-    });
+    fetchMethod("post", `/api/user/${user._id}/addproduct/${listid}`, product)
+      .then(() => {
+        handleModalClose();
+        fetchMethod("get", `/api/user/${user._id}`).then((data) =>
+          setUserList(getProductList(data.user.lists))
+        );
+      })
+      .catch(() => {
+        showMessage("error", "Something went wrong, please try again later.");
+      });
   };
 
   const removeProductFromList = (id) => {

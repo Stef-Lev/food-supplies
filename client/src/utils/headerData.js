@@ -16,14 +16,14 @@ const headerData = [
     href: "/product",
   },
   {
-    label: "Products List",
+    label: "Lists",
     icon: <AssignmentIcon />,
     href: `/user/lists`,
   },
   {
     label: "Overview",
     icon: <GridOnIcon />,
-    href: `/user/overview`,
+    href: `/user/tables`,
   },
   {
     label: "Logout",

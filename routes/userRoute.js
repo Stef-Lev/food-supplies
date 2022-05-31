@@ -67,32 +67,6 @@ exports.getPlayerData = catchAsync(async (req, res) => {
   res.status(200).json({ user });
 });
 
-// exports.getTable = catchAsync(async (req, res) => {
-//   const user = await User.findById(req.params.uid).populate({
-//     path: "lists.items.product",
-//     model: "Product",
-//   });
-//   const obj = {};
-//   const foundList = user.lists.find((list) => list._id == req.params.listid);
-//   foundList.items.forEach((item) => {
-//     const id = item.product._id.toJSON();
-//     if (obj[id]) {
-//       obj[id] += 1;
-//     } else {
-//       obj[id] = 1;
-//     }
-//   });
-//   let data = [];
-//   const entries = Object.entries(obj);
-
-//   for (let entry of entries) {
-//     const product = await Product.findById(entry[0]);
-//     data.push({ product, quantity: entry[1] });
-//   }
-
-//   res.status(200).json(data);
-// });
-
 exports.getListData = catchAsync(async (req, res) => {
   const user = await User.findById(req.params.uid).populate({
     path: "lists.items.product",
@@ -128,4 +102,12 @@ exports.updateList = catchAsync(async (req, res) => {
   foundList.listName = req.body.listName;
   await user.save();
   res.status(200).json({ list: foundList });
+});
+
+exports.getUserLists = catchAsync(async (req, res) => {
+  const user = await User.findById(req.params.uid).populate({
+    path: "lists.items.product",
+    model: "Product",
+  });
+  res.status(200).json({ lists: user.lists });
 });

@@ -64,7 +64,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/user/overview"
+                  path="/user/tables"
                   element={
                     <PrivateRoutePage>
                       <OverviewPage />
@@ -98,7 +98,6 @@ function App() {
   );
 }
 
-//Add rename to edit functionality
 //Enrich the ui of the add product section
 //Add language support
 //Add push notifications 1 week before something expires

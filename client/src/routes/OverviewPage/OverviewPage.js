@@ -19,12 +19,25 @@ function OverviewPage() {
   const { user } = useContext(UserContext);
   const { showMessage } = useContext(MessageContext);
   const [loading, setLoading] = useState(true);
+  const [userLists, setUserLists] = useState([]);
   const [selectedList, setSelectedList] = useState(user.lists[0]._id || null);
   const [quantityData, setQuantityData] = useState([]);
   const [totalData, setTotalData] = useState([]);
 
   const useStyles = makeStyles((theme) => createStyles(textFieldStyle));
   const classes = useStyles();
+
+  useEffect(() => {
+    fetchMethod("get", `/api/user/${user._id}/getlists`)
+      .then((data) => {
+        setUserLists(data.lists);
+        setLoading(false);
+      })
+      .catch(() => {
+        showMessage("error", "Something went wrong. Please try again later.");
+        setLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
     if (selectedList) {
@@ -76,9 +89,9 @@ function OverviewPage() {
 
   return (
     <div>
-      <h2 className={styles.title}>List Table</h2>
-      {user.lists.length === 0 && <p>No lists added yet</p>}
-      {user.lists.length > 0 && (
+      <h2 className={styles.title}>List Tables</h2>
+      {!loading && userLists.length === 0 && <p>No lists added yet</p>}
+      {userLists.length > 0 && (
         <FormControl
           variant="outlined"
           className={styles.dropdown}

@@ -1,7 +1,7 @@
 import QueueIcon from "@material-ui/icons/Queue";
 import GridOnIcon from "@material-ui/icons/GridOn";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import TouchAppIcon from "@material-ui/icons/TouchApp";
+import LanguageIcon from "@material-ui/icons/Language";
 
 const tileColorsArray = ["#F487B6", "#4A76CF", "#57CFCB", "#F7C196"];
 
@@ -12,19 +12,19 @@ const homeTilesData = [
     href: "/product",
   },
   {
-    label: "Products List",
+    label: "My Lists",
     icon: <AssignmentIcon style={{ color: tileColorsArray[1] }} />,
     href: `/user/lists`,
   },
   {
-    label: "Overview",
+    label: "List Tables",
     icon: <GridOnIcon style={{ color: tileColorsArray[2] }} />,
-    href: `/user/overview`,
+    href: `/user/tables`,
   },
   {
-    label: "Test",
-    icon: <TouchAppIcon style={{ color: tileColorsArray[3] }} />,
-    href: `/user/test`,
+    label: "Language",
+    icon: <LanguageIcon style={{ color: tileColorsArray[3] }} />,
+    href: `/user/language`,
   },
 ];
 
