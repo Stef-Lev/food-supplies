@@ -1,6 +1,7 @@
 import React from "react";
 import { homeTilesData, tileColorsArray } from "../../utils/homeTilesData";
 import HomeTile from "../../components/HomeTile/HomeTile";
+import { FormattedMessage } from "react-intl";
 import styles from "./HomePage.module.css";
 
 function HomePage() {
@@ -25,9 +26,15 @@ function HomePage() {
           />
         </svg>
       </div>
-
-      <h1 className={styles.home_brand}>.amalthea</h1>
-      <h2 className={styles.home_subtitle}>Food inventory management app</h2>
+      <h1 className={styles.home_brand}>
+        <span className={styles.animated_dot}>.</span>amalthea
+      </h1>
+      <h2 className={styles.home_subtitle}>
+        <FormattedMessage
+          id="home.page.text.appDescription"
+          defaultMessage="Wrong formatted message"
+        />
+      </h2>
       <div className={styles.tiles_container}>
         {homeTilesData.map((item, index) => (
           <HomeTile

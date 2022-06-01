@@ -28,6 +28,22 @@
   gap: 20px;
   flex-wrap: wrap;
 }
+.animated_dot {
+  width: 50px;
+  animation: loop 2s infinite ease-in;
+}
+
+@keyframes loop {
+  0% {
+    color: white;
+  }
+  50% {
+    color: #064960;
+  }
+  100% {
+    color: white;
+  }
+}
 
 @media only screen and (max-width: 599px) {
   .mobile {

@@ -122,7 +122,7 @@ function OverviewPage() {
         <>
           <OverviewTable products={quantityData} />
           <div className={styles.csv_container}>
-            <h3>Export data to CSV</h3>
+            <h3 className={styles.btn_title}>Export data to CSV</h3>
             {/* <button onClick={() => prepareData("list")}>TEST</button> */}
             <div className={styles.btn_container}>
               <div className={styles.export_btn}>

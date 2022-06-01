@@ -9,19 +9,22 @@
   gap: 32px;
 }
 .export_btn {
-  background-color: #064960;
+  background-color: #fff;
   padding: 6px 16px;
   border-radius: 18px;
   box-shadow: 0px 2px 2px rgb(108, 108, 108);
 }
 .export_btn a {
   text-decoration: none;
-  color: white;
+  color: #4a76cf;
+  font-weight: bold;
+}
+.btn_title {
+  color: #fff;
   font-weight: bold;
 }
 .csv_container {
-  background-color: #fff;
-  border: 1px solid rgba(224, 224, 224, 1);
+  background-color: #4a76cf;
   margin-top: 20px;
   border-radius: 18px;
   padding: 20px;

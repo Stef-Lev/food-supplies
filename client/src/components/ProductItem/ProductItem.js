@@ -9,10 +9,7 @@ function ProductItem({ item, onClick }) {
       <div>
         <h3 className={styles.product_title}>{item.product.title}</h3>
         <p className={styles.product_subtitle}>
-          Added:{" "}
-          <span className={styles.product_value}>
-            {format(new Date(item.added), "dd/MM/yyyy")}
-          </span>
+          Added: <span>{format(new Date(item.added), "dd/MM/yyyy")}</span>
         </p>
         <p className={styles.product_subtitle}>
           Expires:{" "}

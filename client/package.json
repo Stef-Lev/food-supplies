@@ -16,6 +16,7 @@
     "react": "^16.13.1",
     "react-csv": "^2.2.2",
     "react-dom": "^16.13.1",
+    "react-intl": "^6.0.3",
     "react-js-loader": "^0.1.0",
     "react-qr-barcode-scanner": "^1.0.6",
     "react-qr-reader": "^2.2.1",
