@@ -11,6 +11,7 @@ import { UserContext } from "../../context/UserContext";
 import { MessageContext } from "../../context/MessageContext";
 import AddListModal from "../../components/AddListModal/AddListModal";
 import EditListModal from "../../components/EditListModal/EditListModal";
+import { FormattedMessage } from "react-intl";
 import styles from "./ListsPage.module.css";
 
 function ListsPage() {
@@ -123,7 +124,12 @@ function ListsPage() {
   return (
     <>
       <div className={styles.column}>
-        <h2>List</h2>
+        <h2>
+          <FormattedMessage
+            id="lists.page.button.title"
+            defaultMessage="Lists"
+          />
+        </h2>
         <div className={styles.edit_container}>
           <Button
             variant="contained"
@@ -135,7 +141,10 @@ function ListsPage() {
             }}
             onClick={() => handleModalOpen("add")}
           >
-            Add new list
+            <FormattedMessage
+              id="lists.page.button.add"
+              defaultMessage="Add new list"
+            />
           </Button>
           <IconButton
             aria-label="edit"

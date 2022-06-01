@@ -6,27 +6,32 @@ import GridOnIcon from "@material-ui/icons/GridOn";
 
 const headerData = [
   {
-    label: "Home",
+    intlId: "header.comp.home",
+    defaultMsg: "Home",
     icon: <HomeIcon />,
     href: "/",
   },
   {
-    label: "Add Product",
+    intlId: "header.comp.add",
+    defaultMsg: "Add Product",
     icon: <QueueIcon />,
     href: "/product",
   },
   {
-    label: "Lists",
+    intlId: "header.comp.lists",
+    defaultMsg: "My Lists",
     icon: <AssignmentIcon />,
     href: `/user/lists`,
   },
   {
-    label: "Overview",
+    intlId: "header.comp.reports",
+    defaultMsg: "Reports",
     icon: <GridOnIcon />,
     href: `/user/tables`,
   },
   {
-    label: "Logout",
+    intlId: "header.comp.logout",
+    defaultMsg: "Logout",
     icon: <ExitToAppIcon />,
     href: "/logout",
   },

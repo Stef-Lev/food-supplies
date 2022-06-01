@@ -11,6 +11,7 @@ import { fetchMethod } from "../../utils/fetchMethod";
 import soundfile from "../../sounds/blip.mp3";
 import { UserContext } from "../../context/UserContext";
 import { MessageContext } from "../../context/MessageContext";
+import { FormattedMessage } from "react-intl";
 import styles from "./ProductsListPage.module.css";
 
 function ProductsListPage() {
@@ -145,7 +146,15 @@ function ProductsListPage() {
                 onClick={removeProductFromList}
               />
             ))}
-        {!byNameResults.length && !loading && <p>No products added yet.</p>}
+        {/* error.list.noProducts */}
+        {!byNameResults.length && !loading && (
+          <p>
+            <FormattedMessage
+              id="error.list.noProducts"
+              defaultMessage="No products added yet"
+            />
+          </p>
+        )}
         {loading && <AnimatedLoader />}
       </div>
       <AddIconButton handleClick={handleModalOpen} />

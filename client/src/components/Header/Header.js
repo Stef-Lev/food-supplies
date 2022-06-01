@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { headerData } from "../../utils/headerData";
+import { FormattedMessage } from "react-intl";
 import useLogout from "../../utils/useLogout";
 
 const useStyles = makeStyles({
@@ -35,8 +36,8 @@ const Header = () => {
     };
   }, []);
 
-  const isLogoutButton = (label) => {
-    return label === "Logout";
+  const isLogoutButton = (intlId) => {
+    return intlId.includes("logout");
   };
 
   const displayHeader = () => {
@@ -50,12 +51,12 @@ const Header = () => {
   };
 
   const getMenuButtons = () => {
-    return headerData.map(({ label, href, icon }) => {
+    return headerData.map(({ intlId, defaultMsg, href, icon }) => {
       if (mobileView) {
-        return !isLogoutButton(label) ? (
+        return !isLogoutButton(intlId) ? (
           <IconButton
             {...{
-              key: label,
+              key: intlId,
               color: "inherit",
               to: href,
               component: RouterLink,
@@ -66,7 +67,7 @@ const Header = () => {
         ) : (
           <IconButton
             {...{
-              key: label,
+              key: intlId,
               color: "inherit",
               onClick: logoutUser,
               component: Button,
@@ -76,27 +77,27 @@ const Header = () => {
           </IconButton>
         );
       } else {
-        return !isLogoutButton(label) ? (
+        return !isLogoutButton(intlId) ? (
           <Button
             {...{
-              key: label,
+              key: intlId,
               color: "inherit",
               to: href,
               component: RouterLink,
             }}
           >
-            {label}
+            <FormattedMessage id={intlId} defaultMessage={defaultMsg} />
           </Button>
         ) : (
           <Button
             {...{
-              key: label,
+              key: intlId,
               color: "inherit",
               onClick: logoutUser,
               component: Button,
             }}
           >
-            {label}
+            <FormattedMessage id={intlId} defaultMessage={defaultMsg} />
           </Button>
         );
       }

@@ -1,8 +1,9 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import styles from "./HomeTile.module.css";
 
-function HomeTile({ icon, label, color, href }) {
+function HomeTile({ icon, intlId, defaultMsg, color, href }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -18,7 +19,9 @@ function HomeTile({ icon, label, color, href }) {
       <div className={styles.icon_container}>
         <div className={styles.icon}>{icon}</div>
       </div>
-      <p>{label}</p>
+      <p>
+        <FormattedMessage id={intlId} defaultMessage={defaultMsg} />
+      </p>
     </div>
   );
 }

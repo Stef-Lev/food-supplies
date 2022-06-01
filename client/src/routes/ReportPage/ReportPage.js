@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import OverviewTable from "../../components/OverviewTable/OverviewTable";
+import ReportTable from "../../components/ReportTable/ReportTable";
 import { UserContext } from "../../context/UserContext";
 import { fetchMethod } from "../../utils/fetchMethod";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
@@ -7,15 +7,16 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
+import { FormattedMessage } from "react-intl";
 import { makeStyles } from "@material-ui/core";
 import { createStyles } from "@material-ui/core";
 import textFieldStyle from "../../utils/textFieldStyle";
 import { format } from "date-fns";
 import { CSVLink } from "react-csv";
 import { MessageContext } from "../../context/MessageContext";
-import styles from "./OverviewPage.module.css";
+import styles from "./ReportPage.module.css";
 
-function OverviewPage() {
+function ReportPage() {
   const { user } = useContext(UserContext);
   const { showMessage } = useContext(MessageContext);
   const [loading, setLoading] = useState(true);
@@ -89,7 +90,9 @@ function OverviewPage() {
 
   return (
     <div>
-      <h2 className={styles.title}>List Tables</h2>
+      <h2 className={styles.title}>
+        <FormattedMessage id="reports.page.title" defaultMessage="Reports" />
+      </h2>
       {!loading && userLists.length === 0 && <p>No lists added yet</p>}
       {userLists.length > 0 && (
         <FormControl
@@ -101,7 +104,10 @@ function OverviewPage() {
           style={{ width: "60%" }}
         >
           <InputLabel id="demo-simple-select-outlined-label">
-            Select list
+            <FormattedMessage
+              id="reports.page.input.select"
+              defaultMessage="Select list"
+            />
           </InputLabel>
           <Select
             id="demo-simple-select-outlined"
@@ -120,22 +126,32 @@ function OverviewPage() {
       {loading && <AnimatedLoader />}
       {!loading && quantityData.length > 0 && (
         <>
-          <OverviewTable products={quantityData} />
+          <ReportTable products={quantityData} />
           <div className={styles.csv_container}>
-            <h3 className={styles.btn_title}>Export data to CSV</h3>
-            {/* <button onClick={() => prepareData("list")}>TEST</button> */}
+            <h3 className={styles.btn_title}>
+              <FormattedMessage
+                id="reports.page.export.title"
+                defaultMessage="Export data to CSV"
+              />
+            </h3>
             <div className={styles.btn_container}>
+              <div className={styles.export_btn}>
+                <CSVLink data={prepareData("list")} download="supplies_list">
+                  <FormattedMessage
+                    id="reports.page.export.prodList"
+                    defaultMessage="List Only"
+                  />
+                </CSVLink>
+              </div>
               <div className={styles.export_btn}>
                 <CSVLink
                   data={prepareData("quantity")}
                   download="supplies_quantity"
                 >
-                  Quantities
-                </CSVLink>
-              </div>
-              <div className={styles.export_btn}>
-                <CSVLink data={prepareData("list")} download="supplies_list">
-                  Product List
+                  <FormattedMessage
+                    id="reports.page.export.quantities"
+                    defaultMessage="Quantities"
+                  />
                 </CSVLink>
               </div>
             </div>
@@ -149,4 +165,4 @@ function OverviewPage() {
   );
 }
 
-export default OverviewPage;
+export default ReportPage;

@@ -6,9 +6,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import styles from "./OverviewTable.module.css";
+import { FormattedMessage } from "react-intl";
+import styles from "./ReportTable.module.css";
 
-function OverviewTable({ products }) {
+function ReportTable({ products }) {
   return (
     <TableContainer component={Paper} style={{ borderRadius: "18px" }}>
       <Table aria-label="games table" size="small">
@@ -20,10 +21,16 @@ function OverviewTable({ products }) {
               width="80%"
               style={{ borderRight: "1px solid rgba(224, 224, 224, 1)" }}
             >
-              Product
+              <FormattedMessage
+                id="reports.page.table.product"
+                defaultMessage="Product"
+              />
             </TableCell>
             <TableCell align="center" className={styles.thead} width="20%">
-              Quantity
+              <FormattedMessage
+                id="reports.page.table.quantity"
+                defaultMessage="Quantity"
+              />
             </TableCell>
           </TableRow>
         </TableHead>
@@ -47,4 +54,4 @@ function OverviewTable({ products }) {
   );
 }
 
-export default OverviewTable;
+export default ReportTable;

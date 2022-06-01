@@ -9,7 +9,7 @@ import SignupPage from "./routes/SignupPage/SignupPage";
 import AddProductsPage from "./routes/AddProductsPage/AddProductsPage";
 import ProductsListPage from "./routes/ProductsListPage/ProductsListPage";
 import ListsPage from "./routes/ListsPage/ListsPage";
-import OverviewPage from "./routes/OverviewPage/OverviewPage";
+import ReportPage from "./routes/ReportPage/ReportPage";
 import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "./context/UserContext";
@@ -22,7 +22,7 @@ function App() {
   const { user, setUser, isLoading } = useFindUser();
   const local = navigator.language;
   let lang;
-  if (local.includes("el")) {
+  if (local.includes("en")) {
     lang = Greek;
   } else {
     lang = English;
@@ -78,7 +78,7 @@ function App() {
                     path="/user/tables"
                     element={
                       <PrivateRoutePage>
-                        <OverviewPage />
+                        <ReportPage />
                       </PrivateRoutePage>
                     }
                   />
@@ -110,8 +110,10 @@ function App() {
   );
 }
 
-//Add language support
+//Add language support, add all formatted messages
+//Create language page to add locale to localStorage
 //Add push notifications 1 week before something expires
 //Refactor
+//Add clear input adornment to search by name
 
 export default App;

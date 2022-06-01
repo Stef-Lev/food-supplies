@@ -39,7 +39,8 @@ function HomePage() {
         {homeTilesData.map((item, index) => (
           <HomeTile
             key={`tile_${index}`}
-            label={item.label}
+            intlId={item.intlId}
+            defaultMsg={item.defaultMsg}
             icon={item.icon}
             href={item.href}
             color={tileColorsArray[index]}

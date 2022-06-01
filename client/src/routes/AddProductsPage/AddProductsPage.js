@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import NewProductForm from "../../components/NewProductForm/NewProductForm";
 import CameraAltIcon from "@material-ui/icons/CameraAlt";
 import TextField from "@material-ui/core/TextField";
+import { FormattedMessage } from "react-intl";
 import { fetchMethod } from "../../utils/fetchMethod";
 import textFieldStyle from "../../utils/textFieldStyle";
 import { makeStyles } from "@material-ui/core";
@@ -55,7 +56,12 @@ function AddProductsPage() {
   return (
     <div>
       <div>
-        <p className={styles.text}>Click to scan a product with your camera.</p>
+        <p className={styles.text}>
+          <FormattedMessage
+            id="addproduct.page.header.text"
+            defaultMessage="Click to scan a product with your camera"
+          />
+        </p>
       </div>
       <div className={styles.buttons_flex}>
         <Button
@@ -64,7 +70,10 @@ function AddProductsPage() {
           style={{ ...brandBtnStyle, background: "#064960" }}
           onClick={() => setScannerOn(true)}
         >
-          SCAN
+          <FormattedMessage
+            id="addproduct.page.button.scan"
+            defaultMessage="Scan"
+          />
         </Button>
         <Button
           variant="contained"
@@ -75,7 +84,10 @@ function AddProductsPage() {
             clearInputs();
           }}
         >
-          CANCEL
+          <FormattedMessage
+            id="addproduct.page.button.cancel"
+            defaultMessage="Cancel"
+          />
         </Button>
       </div>
       {scannerOn && (
@@ -84,7 +96,12 @@ function AddProductsPage() {
             <BarcodeScannerComponent width={260} onUpdate={handleUpdate} />
             <TextField
               id="barcode-manual"
-              label="Add barcode manually"
+              label={
+                <FormattedMessage
+                  id="addproduct.page.input.manual"
+                  defaultMessage="Add barcode manually"
+                />
+              }
               variant="outlined"
               autoComplete="off"
               classes={{
