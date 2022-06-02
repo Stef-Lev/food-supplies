@@ -125,7 +125,12 @@ function ReportPage() {
             id="demo-simple-select-outlined"
             value={selectedList}
             onChange={handleListSelect}
-            label="Select list"
+            label={
+              <FormattedMessage
+                id="reports.page.input.select"
+                defaultMessage="Select list"
+              />
+            }
           >
             {user.lists.map((item, index) => (
               <MenuItem key={index + 1} value={item._id}>

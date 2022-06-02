@@ -10,29 +10,24 @@ import AddProductsPage from "./routes/AddProductsPage/AddProductsPage";
 import ProductsListPage from "./routes/ProductsListPage/ProductsListPage";
 import ListsPage from "./routes/ListsPage/ListsPage";
 import ReportPage from "./routes/ReportPage/ReportPage";
+import LanguagePage from "./routes/LanguagePage/LanguagePage";
 import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "./context/UserContext";
 import useFindUser from "./utils/useFindUser";
 import { MessageProvider } from "./context/MessageContext";
-import English from "./languages/en.json";
-import Greek from "./languages/gr.json";
+import useStorageLocale from "./utils/useStorageLocale";
 
 function App() {
   const { user, setUser, isLoading } = useFindUser();
-  const local = navigator.language;
-  let lang;
-  if (local.includes("en")) {
-    lang = Greek;
-  } else {
-    lang = English;
-  }
+  const [locale, setLocale, messages] = useStorageLocale();
+
   console.log("USER_CONTEXT", user);
   return (
     <div className="App">
       <Router>
         <UserContext.Provider value={{ user, setUser, isLoading }}>
-          <IntlProvider locale={local} messages={lang}>
+          <IntlProvider locale={locale} messages={messages}>
             <MessageProvider>
               {user && <Header />}
               <Container maxWidth="sm" className="main-container">
@@ -79,6 +74,15 @@ function App() {
                     element={
                       <PrivateRoutePage>
                         <ReportPage />
+                      </PrivateRoutePage>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/user/language"
+                    element={
+                      <PrivateRoutePage>
+                        <LanguagePage />
                       </PrivateRoutePage>
                     }
                   />

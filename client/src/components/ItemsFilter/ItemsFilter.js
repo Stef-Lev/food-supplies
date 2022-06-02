@@ -71,13 +71,21 @@ function ItemsFilter({ searchTerm, setSearchTerm, filter, setFilter }) {
             }}
           >
             <InputLabel id="demo-simple-select-outlined-label">
-              Sort by
+              <FormattedMessage
+                id="products.page.input.sort"
+                defaultMessage="Sort by"
+              />
             </InputLabel>
             <Select
               id="demo-simple-select-outlined"
               value={filter}
               onChange={handleSelectChange}
-              label="Sort by"
+              label={
+                <FormattedMessage
+                  id="products.page.input.sort"
+                  defaultMessage="Sort by"
+                />
+              }
             >
               {sortBy.map((item, index) => (
                 <MenuItem key={index + 1} value={item.type}>
