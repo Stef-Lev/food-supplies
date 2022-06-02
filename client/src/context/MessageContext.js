@@ -5,6 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 import Slide from "@material-ui/core/Slide";
+import { FormattedMessage } from "react-intl";
 import brandBtnStyle from "../utils/brandBtnStyle";
 import messageStyle from "../utils/messageStyle";
 export const MessageContext = createContext({});
@@ -71,7 +72,7 @@ export const MessageProvider = (props) => {
                         marginRight: "10px",
                       }}
                     >
-                      Yes
+                      <FormattedMessage id="generic.yes" defaultMessage="Yes" />
                     </Button>
                     <Button
                       variant="contained"
@@ -84,7 +85,7 @@ export const MessageProvider = (props) => {
                         marginRight: "10px",
                       }}
                     >
-                      No
+                      <FormattedMessage id="generic.no" defaultMessage="No" />
                     </Button>
                   </div>
                 )}

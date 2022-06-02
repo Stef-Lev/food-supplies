@@ -85,17 +85,24 @@ function ListsPage() {
   };
 
   const removeList = (id) => {
-    showMessage("warning", "Delete list?", () => {
-      fetchMethod("delete", `/api/user/${user._id}/deletelist/${id}`).then(
-        () => {
-          fetchMethod("get", `/api/user/${user._id}`).then((item) => {
-            setLists(item.user.lists);
-            setIsEditMode(false);
-            handleModalClose("edit");
-          });
-        }
-      );
-    });
+    showMessage(
+      "warning",
+      <FormattedMessage
+        id="snackbar.message.deleteList"
+        defaultMessage="stefanos"
+      />,
+      () => {
+        fetchMethod("delete", `/api/user/${user._id}/deletelist/${id}`).then(
+          () => {
+            fetchMethod("get", `/api/user/${user._id}`).then((item) => {
+              setLists(item.user.lists);
+              setIsEditMode(false);
+              handleModalClose("edit");
+            });
+          }
+        );
+      }
+    );
   };
 
   const openEditModal = (id) => {

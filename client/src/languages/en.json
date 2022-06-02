@@ -32,5 +32,18 @@
   "reports.page.export.title": "Export data to CSV",
   "reports.page.export.quantities": "Quantities",
   "reports.page.export.prodList": "List Only",
-  "error.list.noProducts": "No products added yet"
+  "error.list.noProducts": "No products added yet",
+  "modal.input.text": "List Name",
+  "modal.button.add": "Add",
+  "modal.button.cancel": "Cancel",
+  "modal.edit.title": "Edit list",
+  "modal.edit.input.text": "List name",
+  "modal.edit.button.save": "Save",
+  "modal.edit.button.cancel": "Cancel",
+  "modal.edit.button.cancel": "Cancel",
+  "generic.yes": "Yes",
+  "generic.no": "No",
+  "generic.error": "Something went wrong. Please try again later.",
+  "snackbar.message.deleteList": "Delete list?",
+  "snackbar.message.deleteProduct": "Delete product?"
 }

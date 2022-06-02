@@ -5,6 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core";
 import { createStyles } from "@material-ui/core";
+import { FormattedMessage } from "react-intl";
 import textFieldStyle from "../../utils/textFieldStyle";
 import brandBtnStyle from "../../utils/brandBtnStyle";
 
@@ -21,11 +22,21 @@ function AddListModal({ isOpen, onClose, list, onInputChange, addList }) {
       onClose={onClose}
     >
       <div className={styles.container}>
-        <p className="page-title">Add list</p>
+        <p className="page-title">
+          <FormattedMessage
+            id="lists.page.button.add"
+            defaultMessage="Add list"
+          />
+        </p>
         <div className={styles.column}>
           <TextField
             id="new-list-name"
-            label="List name"
+            label={
+              <FormattedMessage
+                id="modal.input.text"
+                defaultMessage="List name"
+              />
+            }
             variant="outlined"
             autoComplete="off"
             size="medium"
@@ -45,7 +56,7 @@ function AddListModal({ isOpen, onClose, list, onInputChange, addList }) {
             style={{ ...brandBtnStyle, background: "#064960", margin: "0" }}
             onClick={addList}
           >
-            Add
+            <FormattedMessage id="modal.button.add" defaultMessage="Add" />
           </Button>
           <Button
             variant="contained"
@@ -53,7 +64,10 @@ function AddListModal({ isOpen, onClose, list, onInputChange, addList }) {
             style={{ ...brandBtnStyle, background: "#ed5f5f", margin: "0" }}
             onClick={onClose}
           >
-            Cancel
+            <FormattedMessage
+              id="modal.button.cancel"
+              defaultMessage="Cancel"
+            />
           </Button>
         </div>
       </div>

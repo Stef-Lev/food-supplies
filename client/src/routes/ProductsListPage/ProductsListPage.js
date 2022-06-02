@@ -99,21 +99,34 @@ function ProductsListPage() {
         );
       })
       .catch(() => {
-        showMessage("error", "Something went wrong, please try again later.");
+        showMessage(
+          "error",
+          <FormattedMessage
+            id="generic.error"
+            defaultMessage="Something went wrong. Please try again later."
+          />
+        );
       });
   };
 
   const removeProductFromList = (id) => {
-    showMessage("warning", "Delete product?", () => {
-      fetchMethod(
-        "delete",
-        `/api/user/${user._id}/list/${listid}/product/${id}`
-      ).then(() => {
-        fetchMethod("get", `/api/user/${user._id}`).then((data) =>
-          setUserList(getProductList(data.user.lists))
-        );
-      });
-    });
+    showMessage(
+      "warning",
+      <FormattedMessage
+        id="snackbar.message.deleteProduct"
+        defaultMessage="Delete product?"
+      />,
+      () => {
+        fetchMethod(
+          "delete",
+          `/api/user/${user._id}/list/${listid}/product/${id}`
+        ).then(() => {
+          fetchMethod("get", `/api/user/${user._id}`).then((data) =>
+            setUserList(getProductList(data.user.lists))
+          );
+        });
+      }
+    );
   };
 
   return (

@@ -35,7 +35,13 @@ function ReportPage() {
         setLoading(false);
       })
       .catch(() => {
-        showMessage("error", "Something went wrong. Please try again later.");
+        showMessage(
+          "error",
+          <FormattedMessage
+            id="generic.error"
+            defaultMessage="Something went wrong. Please try again later."
+          />
+        );
         setLoading(false);
       });
   }, []);
@@ -50,7 +56,13 @@ function ReportPage() {
           setLoading(false);
         })
         .catch(() => {
-          showMessage("error", "Something went wrong. Please try again later.");
+          showMessage(
+            "error",
+            <FormattedMessage
+              id="generic.error"
+              defaultMessage="Something went wrong. Please try again later."
+            />
+          );
           setLoading(false);
         });
     }

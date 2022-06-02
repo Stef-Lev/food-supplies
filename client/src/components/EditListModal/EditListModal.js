@@ -5,6 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { FormattedMessage } from "react-intl";
 import { makeStyles } from "@material-ui/core";
 import { createStyles } from "@material-ui/core";
 import textFieldStyle from "../../utils/textFieldStyle";
@@ -30,12 +31,19 @@ function EditListModal({
       onClose={onClose}
     >
       <div className={styles.container}>
-        <p className="page-title">Edit list</p>
+        <p className="page-title">
+          <FormattedMessage id="modal.edit.title" defaultMessage="Edit list" />
+        </p>
         <div className={styles.column}>
           <div className={styles.row}>
             <TextField
               id="edit-list-name"
-              label="List name"
+              label={
+                <FormattedMessage
+                  id="modal.edit.input.text"
+                  defaultMessage="List name"
+                />
+              }
               variant="outlined"
               autoComplete="off"
               size="medium"
@@ -61,7 +69,10 @@ function EditListModal({
             style={{ ...brandBtnStyle, background: "#064960", margin: "0" }}
             onClick={() => onSave(listId)}
           >
-            Save
+            <FormattedMessage
+              id="modal.edit.button.save"
+              defaultMessage="Save"
+            />
           </Button>
           <Button
             variant="contained"
@@ -69,7 +80,10 @@ function EditListModal({
             style={{ ...brandBtnStyle, background: "#ed5f5f", margin: "0" }}
             onClick={onClose}
           >
-            Cancel
+            <FormattedMessage
+              id="modal.edit.button.cancel"
+              defaultMessage="Cancel"
+            />
           </Button>
         </div>
       </div>
