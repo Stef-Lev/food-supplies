@@ -44,5 +44,6 @@
   "generic.no": "No",
   "generic.error": "Something went wrong. Please try again later.",
   "snackbar.message.deleteList": "Delete list?",
-  "snackbar.message.deleteProduct": "Delete product?"
+  "snackbar.message.deleteProduct": "Delete product?",
+  "language.page.select": "Select your language"
 }

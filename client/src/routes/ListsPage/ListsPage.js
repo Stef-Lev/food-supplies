@@ -131,7 +131,7 @@ function ListsPage() {
   return (
     <>
       <div className={styles.column}>
-        <h2>
+        <h2 className={styles.title}>
           <FormattedMessage
             id="lists.page.button.title"
             defaultMessage="Lists"

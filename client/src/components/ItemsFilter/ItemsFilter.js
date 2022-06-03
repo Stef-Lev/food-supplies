@@ -1,10 +1,14 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Container from "@material-ui/core/Container";
 import Select from "@material-ui/core/Select";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import textFieldStyle from "../../utils/textFieldStyle";
 import { FormattedMessage } from "react-intl";
 import { makeStyles } from "@material-ui/core";
@@ -42,27 +46,59 @@ function ItemsFilter({ searchTerm, setSearchTerm, filter, setFilter }) {
     }
   };
 
+  const clearSearch = () => {
+    setSearchTerm("");
+  };
+
   return (
     <>
       <div className={styles.filter_container}>
         <Container maxWidth="sm" className={styles.filter_box}>
-          <TextField
+          <FormControl
+            variant="outlined"
             className={styles.searchbox}
-            id="new-prd-expires"
-            label={
+            classes={{
+              root: classes.filters,
+            }}
+          >
+            <InputLabel id="demo-simple-select-outlined-label">
               <FormattedMessage
                 id="products.page.input.search"
                 defaultMessage="Search by name"
               />
-            }
-            variant="outlined"
-            autoComplete="off"
-            classes={{
-              root: classes.filters,
-            }}
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
+            </InputLabel>
+            <OutlinedInput
+              className={styles.searchbox}
+              id="new-prd-expires"
+              label={
+                <FormattedMessage
+                  id="products.page.input.search"
+                  defaultMessage="Search by name"
+                />
+              }
+              variant="outlined"
+              autoComplete="off"
+              classes={{
+                root: classes.filters,
+              }}
+              value={searchTerm}
+              onChange={handleSearchChange}
+              endAdornment={
+                <InputAdornment position="end">
+                  {searchTerm && (
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={clearSearch}
+                      edge="end"
+                    >
+                      <HighlightOffIcon />
+                    </IconButton>
+                  )}
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+
           <FormControl
             variant="outlined"
             className={styles.filter}

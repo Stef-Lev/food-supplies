@@ -4,6 +4,11 @@
   gap: 12px;
 }
 
+.title {
+  font-size: 26px;
+  font-weight: bold;
+}
+
 .edit_container {
   display: flex;
   justify-content: space-between;

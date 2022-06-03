@@ -44,5 +44,6 @@
   "generic.no": "Όχι",
   "generic.error": "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.",
   "snackbar.message.deleteList": "Διαγραφή λίστας;",
-  "snackbar.message.deleteProduct": "Διαγραφή προϊόντος;"
+  "snackbar.message.deleteProduct": "Διαγραφή προϊόντος;",
+  "language.page.select": "Επιλέξτε γλώσσα"
 }

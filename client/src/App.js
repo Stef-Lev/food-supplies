@@ -20,14 +20,15 @@ import useStorageLocale from "./utils/useStorageLocale";
 
 function App() {
   const { user, setUser, isLoading } = useFindUser();
-  const [locale, setLocale, messages] = useStorageLocale();
+  const { storageLocale, messages } = useStorageLocale();
 
   console.log("USER_CONTEXT", user);
+
   return (
     <div className="App">
       <Router>
         <UserContext.Provider value={{ user, setUser, isLoading }}>
-          <IntlProvider locale={locale} messages={messages}>
+          <IntlProvider locale={storageLocale} messages={messages}>
             <MessageProvider>
               {user && <Header />}
               <Container maxWidth="sm" className="main-container">
@@ -114,8 +115,6 @@ function App() {
   );
 }
 
-//Add language support, add all formatted messages
-//Create language page to add locale to localStorage
 //Add push notifications 1 week before something expires
 //Refactor
 //Add clear input adornment to search by name
