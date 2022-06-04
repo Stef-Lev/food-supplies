@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const database = findDatabase(process.env.NODE_ENV);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const http = require("http");
 const jwtSecret = process.env.JWT_SECRET;
 
 mongoose.connect(database);
@@ -50,6 +51,12 @@ if (process.env.NODE_ENV === "production") {
     res.send("API running");
   });
 }
+
+// Keep heroku app awake
+// 25 * 60 * 1000 "25 minutes"
+setInterval(() => {
+  http.get("http://amalthea-suppies.herokuapp.com");
+}, 25 * 60 * 1000);
 
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);
