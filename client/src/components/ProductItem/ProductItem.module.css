@@ -24,5 +24,23 @@
 }
 .product_value {
   font-weight: bold;
-  color: #f487b6;
+  color: #57cfcb;
+}
+.expired_container {
+  display: flex;
+  margin-top: 3px;
+  font-size: 0.9rem;
+}
+.expired_container p {
+  width: fit-content;
+  padding: 2px 5px;
+  color: #aaaaaa;
+  font-style: italic;
+}
+
+.expired_chip {
+  background-color: #ed5f5f;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 8px;
 }

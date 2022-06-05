@@ -1,0 +1,54 @@
+import React from "react";
+import styles from "./ExpiryInfoModal.module.css";
+import Modal from "@material-ui/core/Modal";
+import WarningIcon from "@material-ui/icons/Warning";
+import CloseIcon from "@material-ui/icons/Close";
+import { format } from "date-fns";
+import { FormattedMessage } from "react-intl";
+
+function ExpiryInfoModal({ isOpen, onClose, products }) {
+  console.log(products);
+
+  const transformData = (items) => {
+    return items.map((item, index) => (
+      <div key={`list_${index + 1}`}>
+        <p>{item.name}</p>
+        {item.products.map((item, index) => (
+          <p key={`product_${index + 1}`}>
+            {item.product.title}
+            <span>{format(new Date(item.expires), "dd/MM/yyyy")}</span>
+          </p>
+        ))}
+      </div>
+    ));
+  };
+
+  return (
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      className={styles.overlay}
+      open={isOpen}
+      onClose={onClose}
+      style={{ outline: "none" }}
+    >
+      <div className={styles.container}>
+        <div className={styles.close_icon_wrapper}>
+          <CloseIcon
+            style={{ width: "22px", height: "22px" }}
+            onClick={onClose}
+          />
+        </div>
+        <div className={styles.warning_icon}>
+          <WarningIcon style={{ width: "55px", height: "55px" }} />
+        </div>
+        <p className="page-title">
+          The following products are going to expire soon
+        </p>
+        {transformData(products)}
+      </div>
+    </Modal>
+  );
+}
+
+export default ExpiryInfoModal;

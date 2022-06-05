@@ -43,6 +43,7 @@
   "generic.yes": "Yes",
   "generic.no": "No",
   "generic.error": "Something went wrong. Please try again later.",
+  "generic.expired": "expired",
   "generic.logout.warning": "Do you want to logout?",
   "snackbar.message.deleteList": "Delete list?",
   "snackbar.message.deleteProduct": "Delete product?",

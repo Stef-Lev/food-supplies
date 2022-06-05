@@ -43,6 +43,7 @@
   "generic.yes": "Ναι",
   "generic.no": "Όχι",
   "generic.error": "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.",
+  "generic.expired": "έληξε",
   "generic.logout.warning": "Θέλετε να βγείτε;",
   "snackbar.message.deleteList": "Διαγραφή λίστας;",
   "snackbar.message.deleteProduct": "Διαγραφή προϊόντος;",

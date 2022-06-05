@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { homeTilesData, tileColorsArray } from "../../utils/homeTilesData";
 import HomeTile from "../../components/HomeTile/HomeTile";
+import { UserContext } from "../../context/UserContext";
+import ExpiryInfoModal from "../../components/ExpiryInfoModal/ExpiryInfoModal";
 import { FormattedMessage } from "react-intl";
+import { differenceInDays } from "date-fns";
 import styles from "./HomePage.module.css";
 
 function HomePage() {
+  const [modalOpen, setModalOpen] = useState(true);
+  const [expired, setExpired] = useState([]);
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    let mounted = true;
+
+    if (mounted && user && user.lists.length > 0) {
+      const expiredProducts = [];
+      for (let i = 0; i < user.lists.length; i++) {
+        let listObj = { name: user.lists[i].listName, products: [] };
+        for (let j = 0; j < user.lists[i].items.length; j++) {
+          if (getDaysBeforeExpiration(user.lists[i].items[j]) < 0) {
+            listObj.products.push(user.lists[i].items[j]);
+          }
+        }
+        if (listObj.products.length > 0) {
+          expiredProducts.push(listObj);
+        }
+      }
+      setExpired(expiredProducts);
+    }
+
+    return () => (mounted = false);
+  }, []);
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const getDaysBeforeExpiration = (product) => {
+    const today = new Date();
+    const expirationDate = new Date(product.expires);
+    return differenceInDays(expirationDate, today);
+  };
+
+  // console.log("user", user);
   return (
     <div className={styles.home_page}>
       <div className={styles.svg_container}>
@@ -47,6 +87,12 @@ function HomePage() {
           />
         ))}
       </div>
+      {expired.length}
+      <ExpiryInfoModal
+        isOpen={modalOpen}
+        onClose={handleModalClose}
+        products={expired}
+      />
     </div>
   );
 }

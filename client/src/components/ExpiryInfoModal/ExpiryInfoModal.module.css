@@ -1,0 +1,26 @@
+.container {
+  background-color: azure;
+  width: 320px;
+  padding: 10px;
+  border-radius: 18px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  outline: none;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.close_icon_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

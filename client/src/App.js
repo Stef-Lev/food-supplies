@@ -115,9 +115,10 @@ function App() {
   );
 }
 
-//Add push notifications 1 week before something expires
+//Add modal to home page 10 days before something expires
 //Refactor
 //Add error handling to API
-//Snackbar for logout
+//Change date picker styling
+//Change intro expiry modal style
 
 export default App;
