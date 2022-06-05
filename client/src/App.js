@@ -117,7 +117,7 @@ function App() {
 
 //Add push notifications 1 week before something expires
 //Refactor
-//Add clear input adornment to search by name
 //Add error handling to API
+//Snackbar for logout
 
 export default App;
