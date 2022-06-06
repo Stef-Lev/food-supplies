@@ -54,6 +54,16 @@ const textFieldStyle = {
       },
     },
   },
+  datePicker: {
+    backgroundColor: "red",
+    "& fieldset": {
+      border: "solid 2px #0070D8",
+    },
+    "& .MuiInputBase-root": {
+      height: (params) => (params.height ? params.height : "auto"),
+      color: (params) => (params.color ? params.color : "inherit"),
+    },
+  },
 };
 
 export default textFieldStyle;

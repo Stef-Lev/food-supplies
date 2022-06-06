@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import English from "../languages/en.json";
 import Greek from "../languages/gr.json";
 
@@ -10,13 +10,33 @@ const useStorageLocale = () => {
     { language: "Ελληνικά", locale: "el-GR" },
   ];
 
+  const getLocale = useCallback(() => {
+    const storedLocale = localStorage.getItem("amalthea_language");
+    const browserLocale = navigator.language;
+    if (storedLocale && storedLocale !== "undefined") {
+      setStorageLocale(storedLocale);
+      setMessages(getMessages(storedLocale));
+    } else {
+      localStorage.setItem("amalthea_language", browserLocale);
+      setStorageLocale(browserLocale);
+      setMessages(getMessages(browserLocale));
+    }
+  }, []);
+
+  const setLocale = (locale) => {
+    localStorage.setItem("amalthea_language", locale);
+    setStorageLocale(locale);
+    setMessages(getMessages(locale));
+    window.location.reload();
+  };
+
   useEffect(() => {
     let mounted = true;
     if (mounted) {
       getLocale();
     }
     return () => (mounted = false);
-  }, [storageLocale]);
+  }, [storageLocale, getLocale]);
 
   const getMessages = (lang) => {
     const extracted = lang.split("-")[0];
@@ -30,25 +50,6 @@ const useStorageLocale = () => {
     }
   };
 
-  const getLocale = () => {
-    const storedLocale = localStorage.getItem("amalthea_language");
-    const browserLocale = navigator.language;
-    if (storedLocale && storedLocale !== "undefined") {
-      setStorageLocale(storedLocale);
-      setMessages(getMessages(storedLocale));
-    } else {
-      localStorage.setItem("amalthea_language", browserLocale);
-      setStorageLocale(browserLocale);
-      setMessages(getMessages(browserLocale));
-    }
-  };
-
-  const setLocale = (locale) => {
-    localStorage.setItem("amalthea_language", locale);
-    setStorageLocale(locale);
-    setMessages(getMessages(locale));
-    window.location.reload();
-  };
   return { storageLocale, setLocale, messages, languages };
 };
 

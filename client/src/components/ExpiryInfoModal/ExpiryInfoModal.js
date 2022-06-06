@@ -9,14 +9,17 @@ import { FormattedMessage } from "react-intl";
 function ExpiryInfoModal({ isOpen, onClose, products }) {
   console.log(products);
 
-  const transformData = (items) => {
+  const showAboutToExpire = (items) => {
     return items.map((item, index) => (
-      <div key={`list_${index + 1}`}>
-        <p>{item.name}</p>
+      <div key={`list_${index + 1}`} className={styles.list}>
+        <p className={styles.list_title}>{item.name}</p>
         {item.products.map((item, index) => (
           <p key={`product_${index + 1}`}>
             {item.product.title}
-            <span>{format(new Date(item.expires), "dd/MM/yyyy")}</span>
+            {" - "}
+            <span className={styles.list_expiry}>
+              {format(new Date(item.expires), "dd/MM/yyyy")}
+            </span>
           </p>
         ))}
       </div>
@@ -40,12 +43,16 @@ function ExpiryInfoModal({ isOpen, onClose, products }) {
           />
         </div>
         <div className={styles.warning_icon}>
-          <WarningIcon style={{ width: "55px", height: "55px" }} />
+          <WarningIcon style={{ width: "50px", height: "50px" }} />
         </div>
-        <p className="page-title">
-          The following products are going to expire soon
+        <p className={styles.list_title}>
+          <FormattedMessage
+            id="modal.expiry.title"
+            defaultMessage="The following products are going to expire soon"
+          />
         </p>
-        {transformData(products)}
+        <hr />
+        {showAboutToExpire(products)}
       </div>
     </Modal>
   );

@@ -40,6 +40,7 @@
   "modal.edit.input.text": "List name",
   "modal.edit.button.save": "Save",
   "modal.edit.button.cancel": "Cancel",
+  "modal.expiry.title": "The following products are going to expire soon",
   "generic.yes": "Yes",
   "generic.no": "No",
   "generic.error": "Something went wrong. Please try again later.",

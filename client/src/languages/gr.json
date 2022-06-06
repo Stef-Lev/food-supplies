@@ -40,6 +40,7 @@
   "modal.edit.input.text": "Όνομα",
   "modal.edit.button.save": "Αποθήκευση",
   "modal.edit.button.cancel": "Ακύρωση",
+  "modal.expiry.title": "Τα ακόλουθα προϊόντα θα λήξουν σύντομα",
   "generic.yes": "Ναι",
   "generic.no": "Όχι",
   "generic.error": "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.",

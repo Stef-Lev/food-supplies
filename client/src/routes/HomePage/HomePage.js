@@ -4,11 +4,16 @@ import HomeTile from "../../components/HomeTile/HomeTile";
 import { UserContext } from "../../context/UserContext";
 import ExpiryInfoModal from "../../components/ExpiryInfoModal/ExpiryInfoModal";
 import { FormattedMessage } from "react-intl";
-import { differenceInDays } from "date-fns";
+import { differenceInDays, isToday } from "date-fns";
 import styles from "./HomePage.module.css";
 
 function HomePage() {
-  const [modalOpen, setModalOpen] = useState(true);
+  const hasSeenInfoModal = () => {
+    const lastSeenModalDate = new Date(localStorage.getItem("lastSeenModal"));
+    return isToday(lastSeenModalDate);
+  };
+
+  const [modalOpen, setModalOpen] = useState(!hasSeenInfoModal());
   const [expired, setExpired] = useState([]);
   const { user } = useContext(UserContext);
 
@@ -20,7 +25,10 @@ function HomePage() {
       for (let i = 0; i < user.lists.length; i++) {
         let listObj = { name: user.lists[i].listName, products: [] };
         for (let j = 0; j < user.lists[i].items.length; j++) {
-          if (getDaysBeforeExpiration(user.lists[i].items[j]) < 0) {
+          if (
+            getDaysBeforeExpiration(user.lists[i].items[j]) > 0 &&
+            getDaysBeforeExpiration(user.lists[i].items[j]) <= 10
+          ) {
             listObj.products.push(user.lists[i].items[j]);
           }
         }
@@ -32,9 +40,10 @@ function HomePage() {
     }
 
     return () => (mounted = false);
-  }, []);
+  }, [user]);
 
   const handleModalClose = () => {
+    localStorage.setItem("lastSeenModal", new Date());
     setModalOpen(false);
   };
 
@@ -44,7 +53,6 @@ function HomePage() {
     return differenceInDays(expirationDate, today);
   };
 
-  // console.log("user", user);
   return (
     <div className={styles.home_page}>
       <div className={styles.svg_container}>
@@ -87,12 +95,13 @@ function HomePage() {
           />
         ))}
       </div>
-      {expired.length}
-      <ExpiryInfoModal
-        isOpen={modalOpen}
-        onClose={handleModalClose}
-        products={expired}
-      />
+      {modalOpen && (
+        <ExpiryInfoModal
+          isOpen={modalOpen}
+          onClose={handleModalClose}
+          products={expired}
+        />
+      )}
     </div>
   );
 }

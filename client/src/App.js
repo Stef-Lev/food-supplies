@@ -115,10 +115,7 @@ function App() {
   );
 }
 
-//Add modal to home page 10 days before something expires
 //Refactor
 //Add error handling to API
-//Change date picker styling
-//Change intro expiry modal style
 
 export default App;

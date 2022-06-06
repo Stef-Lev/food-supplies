@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 import Fuse from "fuse.js";
@@ -41,13 +41,16 @@ function ProductsListPage() {
     ? results.filter((item) => item.score < 0.5).map((item) => item.item)
     : userList;
 
-  const getProductList = (arr) => {
-    if (arr.length > 0) {
-      const foundList = arr.find((item) => item._id === listid);
-      return foundList.items;
-    }
-    return [];
-  };
+  const getProductList = useCallback(
+    (arr) => {
+      if (arr.length > 0) {
+        const foundList = arr.find((item) => item._id === listid);
+        return foundList.items;
+      }
+      return [];
+    },
+    [listid]
+  );
 
   useEffect(() => {
     let mounted = true;
@@ -58,7 +61,7 @@ function ProductsListPage() {
       }
     });
     return () => (mounted = true);
-  }, [user._id]);
+  }, [user._id, getProductList]);
 
   const handleScannedResult = (error, result) => {
     if (result) {

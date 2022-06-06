@@ -44,7 +44,7 @@ function ReportPage() {
         );
         setLoading(false);
       });
-  }, []);
+  }, [showMessage, user._id]);
 
   useEffect(() => {
     if (selectedList) {

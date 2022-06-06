@@ -11,6 +11,9 @@
   text-align: center;
   outline: none;
 }
+.container hr {
+  width: 100%;
+}
 
 .overlay {
   display: flex;
@@ -23,4 +26,14 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+.list {
+  font-size: 15px;
+  padding: 5px 5px;
+}
+.list_title {
+  font-weight: bold;
+}
+.list_expiry {
+  font-style: italic;
 }

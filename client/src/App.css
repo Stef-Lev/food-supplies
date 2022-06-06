@@ -41,3 +41,9 @@ form {
   bottom: 20px;
   transition: bottom 0.3s ease-in-out;
 }
+.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-day.MuiPickersDay-current.MuiPickersDay-daySelected {
+  background-color: #57cfcb;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary {
+  color: #57cfcb;
+}
