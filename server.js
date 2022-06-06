@@ -52,12 +52,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// Keep heroku app awake
-// 25 * 60 * 1000 "25 minutes"
-setInterval(() => {
-  http.get("http://amalthea-suppies.herokuapp.com");
-}, 25 * 60 * 1000);
-
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);
 });

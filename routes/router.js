@@ -22,4 +22,7 @@ module.exports = function (app) {
   app.put("/api/user/:uid/editlist/:listid", userRoute.updateList);
   // Product
   app.post("/api/product/add", productRoute.add);
+  app.all("*", (req, res, next) => {
+    res.send("404");
+  });
 };
