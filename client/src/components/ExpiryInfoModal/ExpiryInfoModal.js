@@ -7,8 +7,6 @@ import { format } from "date-fns";
 import { FormattedMessage } from "react-intl";
 
 function ExpiryInfoModal({ isOpen, onClose, products }) {
-  console.log(products);
-
   const showAboutToExpire = (items) => {
     return items.map((item, index) => (
       <div key={`list_${index + 1}`} className={styles.list}>

@@ -22,7 +22,7 @@ function App() {
   const { user, setUser, isLoading } = useFindUser();
   const { storageLocale, messages } = useStorageLocale();
 
-  console.log("USER_CONTEXT", user);
+  // console.log("USER_CONTEXT", user);
 
   return (
     <div className="App">

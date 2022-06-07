@@ -17,8 +17,6 @@ function HomePage() {
   const [expired, setExpired] = useState([]);
   const { user } = useContext(UserContext);
 
-  console.log(user);
-
   useEffect(() => {
     let mounted = true;
 

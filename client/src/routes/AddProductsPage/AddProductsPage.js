@@ -114,7 +114,7 @@ function AddProductsPage() {
           </div>
         </div>
       )}
-      {!scannerOn && (
+      {!scannerOn && !product.barcode && (
         <div className={styles.camera_frame}>
           <div className={styles.barcode_input}>
             <div className={styles.video_placeholder}>
