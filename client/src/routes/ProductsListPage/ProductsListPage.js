@@ -63,6 +63,14 @@ function ProductsListPage() {
     return () => (mounted = true);
   }, [user._id, getProductList]);
 
+  useEffect(() => {
+    if (product.barcode) {
+      setScannerOn(false);
+    } else {
+      setScannerOn(true);
+    }
+  }, [product, setScannerOn]);
+
   const handleScannedResult = (error, result) => {
     if (result) {
       setProduct({ ...product, barcode: result.text });

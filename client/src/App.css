@@ -41,8 +41,15 @@ form {
   bottom: 20px;
   transition: bottom 0.3s ease-in-out;
 }
-.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-day.MuiPickersDay-current.MuiPickersDay-daySelected {
+.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-daySelected {
   background-color: #57cfcb;
+  color: #fff;
+}
+.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-current {
+  color: #57cfcb;
+}
+.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-current.MuiPickersDay-daySelected {
+  color: #fff;
 }
 .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary {
   color: #57cfcb;
