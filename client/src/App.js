@@ -117,5 +117,6 @@ function App() {
 
 //Refactor
 //Add error handling to API
+//Add 404 "catch all" page to routes
 
 export default App;
