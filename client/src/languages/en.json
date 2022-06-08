@@ -46,6 +46,8 @@
   "generic.error": "Something went wrong. Please try again later.",
   "generic.expired": "expired",
   "generic.logout.warning": "Do you want to logout?",
+  "generic.error.page.message": "Page not found",
+  "generic.error.page.button": "Home",
   "snackbar.message.deleteList": "Delete list?",
   "snackbar.message.deleteProduct": "Delete product?",
   "language.page.select": "Select your language"

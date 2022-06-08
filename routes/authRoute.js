@@ -21,6 +21,7 @@ const createUserToken = async (user, code, req, res) => {
   });
 
   user.password = undefined;
+
   res.status(code).json({
     status: "success",
     token,

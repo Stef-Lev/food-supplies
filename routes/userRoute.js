@@ -64,7 +64,11 @@ exports.getPlayerData = catchAsync(async (req, res) => {
     path: "lists.items.product",
     model: "Product",
   });
-  res.status(200).json({ user });
+  if (user) {
+    res.status(200).json({ user });
+  } else {
+    res.status(401).json({ error: 401, status: "User not found" });
+  }
 });
 
 exports.getListData = catchAsync(async (req, res) => {
@@ -89,8 +93,11 @@ exports.getListData = catchAsync(async (req, res) => {
     const product = await Product.findById(entry[0]);
     data.push({ product, quantity: entry[1] });
   }
-
-  res.status(200).json({ list: foundList, quantities: data });
+  if (foundList) {
+    res.status(200).json({ list: foundList, quantities: data });
+  } else {
+    res.status(404).json({ error: 404, status: "List not found" });
+  }
 });
 
 exports.updateList = catchAsync(async (req, res) => {
@@ -101,7 +108,12 @@ exports.updateList = catchAsync(async (req, res) => {
   const foundList = user.lists.find((list) => list._id == req.params.listid);
   foundList.listName = req.body.listName;
   await user.save();
-  res.status(200).json({ list: foundList });
+
+  if (foundList) {
+    res.status(200).json({ list: foundList });
+  } else {
+    res.status(404).json({ error: 404, status: "List not found" });
+  }
 });
 
 exports.getUserLists = catchAsync(async (req, res) => {
@@ -109,5 +121,9 @@ exports.getUserLists = catchAsync(async (req, res) => {
     path: "lists.items.product",
     model: "Product",
   });
-  res.status(200).json({ lists: user.lists });
+  if (user) {
+    res.status(200).json({ lists: user.lists });
+  } else {
+    res.status(404).json({ error: 404, status: "Lists not found" });
+  }
 });

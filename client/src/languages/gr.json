@@ -46,6 +46,8 @@
   "generic.error": "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.",
   "generic.expired": "έληξε",
   "generic.logout.warning": "Θέλετε να βγείτε;",
+  "generic.error.page.message": "Η σελίδα δεν βρέθηκε",
+  "generic.error.page.button": "Αρχική",
   "snackbar.message.deleteList": "Διαγραφή λίστας;",
   "snackbar.message.deleteProduct": "Διαγραφή προϊόντος;",
   "language.page.select": "Επιλέξτε γλώσσα"

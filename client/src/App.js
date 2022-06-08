@@ -11,6 +11,7 @@ import ProductsListPage from "./routes/ProductsListPage/ProductsListPage";
 import ListsPage from "./routes/ListsPage/ListsPage";
 import ReportPage from "./routes/ReportPage/ReportPage";
 import LanguagePage from "./routes/LanguagePage/LanguagePage";
+import Error404Page from "./routes/404Page/Error404Page";
 import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "./context/UserContext";
@@ -103,6 +104,15 @@ function App() {
                       <RedirectLoginPage>
                         <SignupPage />
                       </RedirectLoginPage>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="*"
+                    element={
+                      <PrivateRoutePage>
+                        <Error404Page />
+                      </PrivateRoutePage>
                     }
                   />
                 </Routes>

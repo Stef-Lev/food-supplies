@@ -54,12 +54,17 @@ function ProductsListPage() {
 
   useEffect(() => {
     let mounted = true;
-    fetchMethod("get", `/api/user/${user._id}`).then((data) => {
-      if (mounted) {
-        setUserList(getProductList(data.user.lists));
+    fetchMethod("get", `/api/user/${user._id}`)
+      .then((data) => {
+        if (mounted) {
+          setUserList(getProductList(data.user.lists));
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        setUserList([]);
         setLoading(false);
-      }
-    });
+      });
     return () => (mounted = true);
   }, [user._id, getProductList]);
 
@@ -170,7 +175,6 @@ function ProductsListPage() {
                 onClick={removeProductFromList}
               />
             ))}
-        {/* error.list.noProducts */}
         {!byNameResults.length && !loading && (
           <p>
             <FormattedMessage
