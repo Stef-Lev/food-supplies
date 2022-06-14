@@ -89,7 +89,7 @@ function ListsPage() {
       "warning",
       <FormattedMessage
         id="snackbar.message.deleteList"
-        defaultMessage="stefanos"
+        defaultMessage="Delete List?"
       />,
       () => {
         fetchMethod("delete", `/api/user/${user._id}/deletelist/${id}`).then(
@@ -179,7 +179,14 @@ function ListsPage() {
               isEdited={isEditMode}
             />
           ))}
-        {!lists.length && !loading && <p>No lists added yet.</p>}
+        {!lists.length && !loading && (
+          <p>
+            <FormattedMessage
+              id="reports.page.noLists"
+              defaultMessage="No lists added yet"
+            />
+          </p>
+        )}
         <AddListModal
           isOpen={modalAddOpen}
           onClose={() => handleModalClose("add")}

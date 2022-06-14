@@ -1,5 +1,4 @@
 import React from "react";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import Button from "@material-ui/core/Button";
 import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
@@ -11,9 +10,8 @@ function Error404Page() {
   return (
     <div className={styles.container}>
       <div>
-        <ErrorOutlineIcon style={{ width: "100px", height: "100px" }} />
         <div>
-          <h1 className={styles.title}>404</h1>
+          <img src="404_cat.svg" alt="cat error" />
           <h2 className={styles.subtitle}>
             <FormattedMessage
               id="generic.error.page.message"

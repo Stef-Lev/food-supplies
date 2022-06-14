@@ -21,7 +21,7 @@ function ReportPage() {
   const { showMessage } = useContext(MessageContext);
   const [loading, setLoading] = useState(true);
   const [userLists, setUserLists] = useState([]);
-  const [selectedList, setSelectedList] = useState(user.lists[0]._id || null);
+  const [selectedList, setSelectedList] = useState(user?.lists[0]?._id || null);
   const [quantityData, setQuantityData] = useState([]);
   const [totalData, setTotalData] = useState([]);
 
@@ -105,7 +105,14 @@ function ReportPage() {
       <h2 className={styles.title}>
         <FormattedMessage id="reports.page.title" defaultMessage="Reports" />
       </h2>
-      {!loading && userLists.length === 0 && <p>No lists added yet</p>}
+      {!loading && userLists.length === 0 && (
+        <p>
+          <FormattedMessage
+            id="reports.page.noLists"
+            defaultMessage="No lists added yet"
+          />
+        </p>
+      )}
       {userLists.length > 0 && (
         <FormControl
           variant="outlined"
@@ -175,8 +182,13 @@ function ReportPage() {
           </div>
         </>
       )}
-      {!loading && quantityData.length === 0 && (
-        <p>This list has no products added</p>
+      {!loading && userLists.length !== 0 && quantityData.length === 0 && (
+        <p>
+          <FormattedMessage
+            id="reports.page.noProducts"
+            defaultMessage="This list has no products added"
+          />
+        </p>
       )}
     </div>
   );

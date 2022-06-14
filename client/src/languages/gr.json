@@ -48,6 +48,8 @@
   "generic.logout.warning": "Θέλετε να βγείτε;",
   "generic.error.page.message": "Η σελίδα δεν βρέθηκε",
   "generic.error.page.button": "Αρχική",
+  "reports.page.noLists": "Δεν υπάρχουν λίστες",
+  "reports.page.noProducts": "Η λίστα δεν έχει προϊόντα",
   "snackbar.message.deleteList": "Διαγραφή λίστας;",
   "snackbar.message.deleteProduct": "Διαγραφή προϊόντος;",
   "language.page.select": "Επιλέξτε γλώσσα"

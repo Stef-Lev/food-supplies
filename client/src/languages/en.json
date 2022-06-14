@@ -48,6 +48,8 @@
   "generic.logout.warning": "Do you want to logout?",
   "generic.error.page.message": "Page not found",
   "generic.error.page.button": "Home",
+  "reports.page.noLists": "No lists added yet",
+  "reports.page.noProducts": "This list has no products added",
   "snackbar.message.deleteList": "Delete list?",
   "snackbar.message.deleteProduct": "Delete product?",
   "language.page.select": "Select your language"
