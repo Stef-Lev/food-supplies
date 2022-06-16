@@ -1,6 +1,5 @@
 const authRoute = require("./authRoute");
 const userRoute = require("./userRoute");
-const productRoute = require("./productRoute");
 
 module.exports = function (app) {
   // Authentication
@@ -20,9 +19,5 @@ module.exports = function (app) {
     userRoute.removeListProduct
   );
   app.put("/api/user/:uid/editlist/:listid", userRoute.updateList);
-  // Product
-  app.post("/api/product/add", productRoute.add);
-  // app.all("*", (req, res, next) => {
-  //   res.send("404");
-  // });
+  app.post("/api/user/:uid/product/add", userRoute.addProduct);
 };

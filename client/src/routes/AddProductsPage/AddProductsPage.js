@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import Button from "@material-ui/core/Button";
 import NewProductForm from "../../components/NewProductForm/NewProductForm";
@@ -9,6 +9,7 @@ import { fetchMethod } from "../../utils/fetchMethod";
 import textFieldStyle from "../../utils/textFieldStyle";
 import { makeStyles } from "@material-ui/core";
 import { createStyles } from "@material-ui/core";
+import { UserContext } from "../../context/UserContext";
 import soundfile from "../../sounds/blip.mp3";
 import brandBtnStyle from "../../utils/brandBtnStyle";
 import styles from "./AddProductsPage.module.css";
@@ -22,6 +23,7 @@ function AddProductsPage() {
   const audio = new Audio(soundfile);
   const useStyles = makeStyles((theme) => createStyles(textFieldStyle));
   const classes = useStyles();
+  const { user } = useContext(UserContext);
 
   const handleInputChange = (event, field) => {
     setProduct({ ...product, [field]: event.target.value });
@@ -45,13 +47,17 @@ function AddProductsPage() {
 
   const submitProduct = (e) => {
     e.preventDefault();
-    fetchMethod("post", "/api/product/add", product).then((res) => {
-      setProduct({
-        title: "",
-        barcode: "",
-      });
-    });
+    fetchMethod("post", `/api/user/${user._id}/product/add`, product).then(
+      (res) => {
+        setProduct({
+          title: "",
+          barcode: "",
+        });
+      }
+    );
   };
+
+  // console.log("USERID", user._id);
 
   return (
     <div>

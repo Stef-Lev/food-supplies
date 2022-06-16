@@ -10,6 +10,7 @@ import { FormattedMessage } from "react-intl";
 import styles from "./ReportTable.module.css";
 
 function ReportTable({ products }) {
+  console.log("table", products);
   return (
     <TableContainer component={Paper} style={{ borderRadius: "18px" }}>
       <Table aria-label="games table" size="small">

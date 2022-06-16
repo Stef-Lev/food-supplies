@@ -100,6 +100,11 @@ function ReportPage() {
     setSelectedList(e.target.value);
   };
 
+  console.log("userLists", userLists);
+  console.log("selectedList", selectedList);
+  console.log("quantityData", quantityData);
+  console.log("totalData", totalData);
+
   return (
     <div>
       <h2 className={styles.title}>

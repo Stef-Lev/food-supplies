@@ -20,6 +20,8 @@ function findDatabase(env) {
       return process.env.MONGODB_DEV_URI;
     case "demo":
       return process.env.MONGODB_DEV_URI;
+    case "test":
+      return process.env.MONGODB_TEST_URI;
     default:
       return process.env.MONGODB_DEV_URI;
   }
