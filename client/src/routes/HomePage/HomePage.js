@@ -95,7 +95,7 @@ function HomePage() {
           />
         ))}
       </div>
-      {modalOpen && (
+      {modalOpen && expired.length > 0 && (
         <ExpiryInfoModal
           isOpen={modalOpen}
           onClose={handleModalClose}
