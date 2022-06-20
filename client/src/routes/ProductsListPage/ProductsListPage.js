@@ -52,6 +52,10 @@ function ProductsListPage() {
     [listid]
   );
 
+  const getListName = (lists) => {
+    return lists.find((list) => list._id === listid).listName;
+  };
+
   useEffect(() => {
     let mounted = true;
     fetchMethod("get", `/api/user/${user._id}`)
@@ -125,7 +129,7 @@ function ProductsListPage() {
       });
   };
 
-  const removeProductFromList = (id) => {
+  const removeProductFromList = (itemId, productId) => {
     showMessage(
       "warning",
       <FormattedMessage
@@ -135,7 +139,7 @@ function ProductsListPage() {
       () => {
         fetchMethod(
           "delete",
-          `/api/user/${user._id}/list/${listid}/product/${id}`
+          `/api/user/${user._id}/list/${listid}/item/${itemId}/product/${productId}`
         ).then(() => {
           fetchMethod("get", `/api/user/${user._id}`).then((data) =>
             setUserList(getProductList(data.user.lists))
@@ -144,6 +148,8 @@ function ProductsListPage() {
       }
     );
   };
+
+  console.log(userList);
 
   return (
     <>
@@ -156,6 +162,9 @@ function ProductsListPage() {
         setUserList={setUserList}
       />
       <div className={styles.column}>
+        {!loading && (
+          <h2 className={styles.list_title}>{getListName(user?.lists)}</h2>
+        )}
         {byNameResults.length > 0 &&
           byNameResults
             .sort((a, b) => {

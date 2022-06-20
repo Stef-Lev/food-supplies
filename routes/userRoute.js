@@ -5,8 +5,9 @@ exports.addListProduct = catchAsync(async (req, res) => {
   const { barcode, expires } = req.body;
   const user = await User.findById(req.params.uid);
   const product = user.products.find((prod) => prod.barcode === barcode);
-  const productId = product._id.toJSON();
-  if (product) {
+
+  if (user && product) {
+    const productId = product._id.toJSON();
     const productList = user.lists.find(
       (item) => item._id.toJSON() === req.params.listid
     );
@@ -15,6 +16,22 @@ exports.addListProduct = catchAsync(async (req, res) => {
       expires: expires,
     };
     productList.items.push(productObj);
+
+    let foundProductList = product.lists.find(
+      (list) => list._id === productList._id.toJSON()
+    );
+    console.log(foundProductList);
+
+    if (foundProductList && foundProductList._id == req.params.listid) {
+      foundProductList.quantity++;
+    } else {
+      let productListObj = {};
+      productListObj._id = req.params.listid;
+      productListObj.listName = productList.listName;
+      productListObj.quantity = 1;
+      product.lists.push(productListObj);
+    }
+
     await user.save();
     res.status(200).json({ product });
   } else {
@@ -33,10 +50,17 @@ exports.removeListProduct = catchAsync(async (req, res) => {
   const user = await User.findById(req.params.uid);
   const foundList = user.lists.find((item) => item._id == req.params.listid);
 
-  const filteredProducts = foundList.items.filter(
-    (prod) => prod._id != req.params.pid
+  const filteredItems = foundList.items.filter(
+    (item) => item._id != req.params.itemid
   );
-  foundList.items = filteredProducts;
+  foundList.items = filteredItems;
+
+  const foundProductList = user.products
+    .find((prod) => prod._id == req.params.pid)
+    .lists.find((list) => list._id === req.params.listid);
+  if (foundProductList) {
+    foundProductList.quantity -= 1;
+  }
   await user.save();
   res.status(200).json({ status: `Product ${req.params.pid} deleted!` });
 });
@@ -93,6 +117,13 @@ exports.updateList = catchAsync(async (req, res) => {
   const user = await User.findById(req.params.uid);
   const foundList = user.lists.find((list) => list._id == req.params.listid);
   foundList.listName = req.body.listName;
+  for (let prod of user.products) {
+    for (let list of prod.lists) {
+      if (list._id == req.params.listid) {
+        list.listName = req.body.listName;
+      }
+    }
+  }
   await user.save();
 
   if (foundList) {

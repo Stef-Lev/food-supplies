@@ -48,7 +48,7 @@ function ProductItem({ item, onClick }) {
           </div>
         )}
       </div>
-      <DeleteForeverIcon onClick={() => onClick(item._id)} />
+      <DeleteForeverIcon onClick={() => onClick(item._id, item.product._id)} />
     </div>
   );
 }

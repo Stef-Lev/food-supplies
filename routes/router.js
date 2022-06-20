@@ -15,7 +15,7 @@ module.exports = function (app) {
   app.post("/api/user/:uid/addproduct/:listid", userRoute.addListProduct);
   app.delete("/api/user/:uid/deletelist/:listid", userRoute.removeList);
   app.delete(
-    "/api/user/:uid/list/:listid/product/:pid",
+    "/api/user/:uid/list/:listid/item/:itemid/product/:pid",
     userRoute.removeListProduct
   );
   app.put("/api/user/:uid/editlist/:listid", userRoute.updateList);

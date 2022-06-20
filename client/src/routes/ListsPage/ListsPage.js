@@ -114,7 +114,6 @@ function ListsPage() {
   };
 
   const editList = (id) => {
-    console.log(id);
     fetchMethod(
       "update",
       `/api/user/${user._id}/editlist/${id}`,

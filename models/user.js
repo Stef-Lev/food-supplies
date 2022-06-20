@@ -19,6 +19,7 @@ const UserSchema = new Schema({
     {
       title: String,
       barcode: String,
+      lists: [{ _id: String, listName: String, quantity: Number }],
     },
   ],
   lists: [
