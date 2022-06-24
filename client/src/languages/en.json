@@ -1,6 +1,7 @@
 {
   "header.comp.home": "Home",
   "header.comp.add": "Add product",
+  "header.comp.products": "My Products",
   "header.comp.lists": "My Lists",
   "header.comp.reports": "Reports",
   "header.comp.logout": "Logout",

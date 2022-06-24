@@ -3,8 +3,13 @@ import { homeTilesData, tileColorsArray } from "../../utils/homeTilesData";
 import HomeTile from "../../components/HomeTile/HomeTile";
 import { UserContext } from "../../context/UserContext";
 import ExpiryInfoModal from "../../components/ExpiryInfoModal/ExpiryInfoModal";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Button from "@material-ui/core/Button";
+import brandBtnStyle from "../../utils/brandBtnStyle";
 import { FormattedMessage } from "react-intl";
 import { differenceInDays, isToday } from "date-fns";
+import { MessageContext } from "../../context/MessageContext";
+import useLogout from "../../utils/useLogout";
 import styles from "./HomePage.module.css";
 
 function HomePage() {
@@ -16,6 +21,8 @@ function HomePage() {
   const [modalOpen, setModalOpen] = useState(!hasSeenInfoModal());
   const [expired, setExpired] = useState([]);
   const { user } = useContext(UserContext);
+  const { showMessage } = useContext(MessageContext);
+  const { logoutUser } = useLogout();
 
   useEffect(() => {
     let mounted = true;
@@ -51,6 +58,17 @@ function HomePage() {
     const today = new Date();
     const expirationDate = new Date(product.expires);
     return differenceInDays(expirationDate, today);
+  };
+
+  const warnBeforeDeleting = () => {
+    showMessage(
+      "warning",
+      <FormattedMessage
+        id="generic.logout.warning"
+        defaultMessage="Do you want to logout?"
+      />,
+      () => logoutUser()
+    );
   };
 
   return (
@@ -94,6 +112,20 @@ function HomePage() {
             color={tileColorsArray[index]}
           />
         ))}
+      </div>
+      <div className={styles.logout_container}>
+        <Button
+          className="logout-btn"
+          style={{
+            ...brandBtnStyle,
+            background: "#064960",
+            padding: "6px 16px",
+          }}
+          onClick={warnBeforeDeleting}
+        >
+          <FormattedMessage id="header.comp.logout" defaultMessage="Logout" />
+          <ExitToAppIcon style={{ marginLeft: "10px" }} />
+        </Button>
       </div>
       {modalOpen && expired.length > 0 && (
         <ExpiryInfoModal

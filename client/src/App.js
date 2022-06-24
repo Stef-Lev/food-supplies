@@ -11,6 +11,7 @@ import ProductsListPage from "./routes/ProductsListPage/ProductsListPage";
 import ListsPage from "./routes/ListsPage/ListsPage";
 import ReportPage from "./routes/ReportPage/ReportPage";
 import LanguagePage from "./routes/LanguagePage/LanguagePage";
+import ProductsPage from "./routes/ProductPage/ProductsPage";
 import Error404Page from "./routes/404Page/Error404Page";
 import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
@@ -49,6 +50,15 @@ function App() {
                     element={
                       <PrivateRoutePage>
                         <AddProductsPage />
+                      </PrivateRoutePage>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/user/products"
+                    element={
+                      <PrivateRoutePage>
+                        <ProductsPage />
                       </PrivateRoutePage>
                     }
                   />
@@ -125,6 +135,9 @@ function App() {
   );
 }
 
-//Refactor
+// Refactor
+// Add products page
+// Change header and home page layout to include products
+// Put logout to bottom of home page instead of navbar
 
 export default App;

@@ -1,8 +1,9 @@
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeIcon from "@material-ui/icons/Home";
 import QueueIcon from "@material-ui/icons/Queue";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import GridOnIcon from "@material-ui/icons/GridOn";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import LanguageIcon from "@material-ui/icons/Language";
 
 const headerData = [
   {
@@ -18,6 +19,12 @@ const headerData = [
     href: "/product",
   },
   {
+    intlId: "header.comp.products",
+    defaultMsg: "My Products",
+    icon: <ShoppingCartIcon />,
+    href: `/user/products`,
+  },
+  {
     intlId: "header.comp.lists",
     defaultMsg: "My Lists",
     icon: <AssignmentIcon />,
@@ -30,10 +37,10 @@ const headerData = [
     href: `/user/tables`,
   },
   {
-    intlId: "header.comp.logout",
-    defaultMsg: "Logout",
-    icon: <ExitToAppIcon />,
-    href: "/logout",
+    intlId: "home.page.tile.language",
+    defaultMsg: "Reports",
+    icon: <LanguageIcon />,
+    href: `/user/language`,
   },
 ];
 

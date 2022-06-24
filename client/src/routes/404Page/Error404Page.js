@@ -11,7 +11,7 @@ function Error404Page() {
     <div className={styles.container}>
       <div>
         <div>
-          <img src="404_cat.svg" alt="cat error" />
+          <img src="/404_cat.svg" alt="cat error" />
           <h2 className={styles.subtitle}>
             <FormattedMessage
               id="generic.error.page.message"

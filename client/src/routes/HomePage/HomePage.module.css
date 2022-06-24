@@ -27,10 +27,16 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 .animated_dot {
   width: 50px;
   animation: loop 2s infinite ease-in;
+}
+.logout_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes loop {
