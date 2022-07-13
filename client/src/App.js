@@ -11,7 +11,8 @@ import ProductsListPage from "./routes/ProductsListPage/ProductsListPage";
 import ListsPage from "./routes/ListsPage/ListsPage";
 import ReportPage from "./routes/ReportPage/ReportPage";
 import LanguagePage from "./routes/LanguagePage/LanguagePage";
-import ProductsPage from "./routes/ProductPage/ProductsPage";
+import ProductsPage from "./routes/ProductsPage/ProductsPage";
+import ProductPage from "./routes/ProductPage/ProductPage";
 import Error404Page from "./routes/404Page/Error404Page";
 import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
@@ -59,6 +60,15 @@ function App() {
                     element={
                       <PrivateRoutePage>
                         <ProductsPage />
+                      </PrivateRoutePage>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/user/product/:productid"
+                    element={
+                      <PrivateRoutePage>
+                        <ProductPage />
                       </PrivateRoutePage>
                     }
                   />

@@ -153,14 +153,16 @@ function ProductsListPage() {
 
   return (
     <>
-      <ItemsFilter
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        filter={filter}
-        setFilter={setFilter}
-        userList={userList}
-        setUserList={setUserList}
-      />
+      {byNameResults.length > 0 && !loading && (
+        <ItemsFilter
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          filter={filter}
+          setFilter={setFilter}
+          userList={userList}
+          setUserList={setUserList}
+        />
+      )}
       <div className={styles.column}>
         {!loading && (
           <h2 className={styles.list_title}>{getListName(user?.lists)}</h2>

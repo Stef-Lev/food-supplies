@@ -11,6 +11,7 @@ import { UserContext } from "../../context/UserContext";
 import { MessageContext } from "../../context/MessageContext";
 import AddListModal from "../../components/AddListModal/AddListModal";
 import EditListModal from "../../components/EditListModal/EditListModal";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 import { FormattedMessage } from "react-intl";
 import styles from "./ListsPage.module.css";
 
@@ -170,8 +171,18 @@ function ListsPage() {
         {lists.length > 0 &&
           lists.map((item, index) => (
             <ListItem
-              key={index + 1}
-              item={item}
+              key={`list_${index + 1}`}
+              data={item}
+              icon={<AssignmentIcon style={{ color: "white" }} />}
+              title={item.listName}
+              withDescription
+              description={
+                <FormattedMessage
+                  id="lists.page.button.products"
+                  defaultMessage="Products"
+                  values={{ number: item.items.length }}
+                />
+              }
               onClick={() =>
                 isEditMode ? openEditModal(item._id) : goToList(item._id)
               }

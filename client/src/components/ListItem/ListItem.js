@@ -1,40 +1,35 @@
 import React from "react";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import EditIcon from "@material-ui/icons/Edit";
-import { FormattedMessage } from "react-intl";
 import styles from "./ListItem.module.css";
 
-function ListItem({ item, onClick, isEdited }) {
+function ListItem({
+  data,
+  icon,
+  onClick,
+  isEdited,
+  title,
+  withDescription,
+  description = "",
+}) {
   return (
     <div
       className={`${styles.list_item} ${isEdited && styles.edited}`}
-      onClick={() => onClick(item._id)}
+      onClick={() => onClick(data._id)}
     >
       <div className={styles.info}>
         <div
           className={`${styles.icon_container} ${isEdited && styles.edited}`}
         >
-          <AssignmentIcon style={{ color: "white" }} />
+          {icon}
         </div>
-        <div>
-          <h3 className={styles.list_title}>{item.listName}</h3>
-          <p>
-            <em>
-              {item.items.length === 0 ? (
-                <FormattedMessage
-                  id="lists.page.button.noProducts"
-                  defaultMessage="No Products"
-                />
-              ) : (
-                <FormattedMessage
-                  id="lists.page.button.products"
-                  defaultMessage="Products"
-                  values={{ number: item.items.length }}
-                />
-              )}
-            </em>
-          </p>
+        <div className={styles.text_container}>
+          <h3 className={styles.list_title}>{title}</h3>
+          {withDescription && (
+            <p>
+              <em>{description}</em>
+            </p>
+          )}
         </div>
       </div>
       <div>

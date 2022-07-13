@@ -31,6 +31,11 @@
   box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
   margin-right: 12px;
 }
+.text_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .edited {
   color: #aaaaaa;
