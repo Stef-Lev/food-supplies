@@ -1,5 +1,18 @@
 .product_info_container {
   padding: 10px 20px;
-  background-color: rgb(129, 141, 137);
   border-radius: 8px;
+}
+.title {
+  font-size: 26px;
+  font-weight: bold;
+}
+.product_image {
+  height: 250px;
+  width: 320px;
+  object-fit: cover;
+}
+.table_head {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 8px;
 }

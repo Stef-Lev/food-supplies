@@ -12,6 +12,16 @@ function ProductItem({ item, onClick }) {
   };
   const hasExpired = checkExpired();
 
+  const checkAboutToExpire = () => {
+    const today = new Date();
+    const expirationDate = new Date(item.expires);
+    return (
+      differenceInDays(expirationDate, today) < 7 &&
+      differenceInDays(expirationDate, today) >= 0
+    );
+  };
+  const aboutToExpire = checkAboutToExpire();
+
   return (
     <div className={styles.product_item}>
       <div>
@@ -25,7 +35,7 @@ function ProductItem({ item, onClick }) {
           {": "}
           <span>{format(new Date(item.added), "dd/MM/yyyy")}</span>
         </p>
-        {!hasExpired && (
+        {!hasExpired && !aboutToExpire && (
           <p className={styles.product_subtitle}>
             <FormattedMessage
               id="products.page.item.expires"
@@ -37,11 +47,19 @@ function ProductItem({ item, onClick }) {
             </span>
           </p>
         )}
-        {hasExpired && (
+        {hasExpired && !aboutToExpire && (
           <div className={styles.expired_container}>
             <div className={styles.expired_chip}>
               <FormattedMessage id="generic.expired" defaultMessage="expired" />
             </div>
+            <p className={styles.product_value}>
+              {format(new Date(item.expires), "dd/MM/yyyy")}
+            </p>
+          </div>
+        )}
+        {!hasExpired && aboutToExpire && (
+          <div className={styles.expired_container}>
+            <div className={styles.about_chip}>about to expire</div>
             <p className={styles.product_value}>
               {format(new Date(item.expires), "dd/MM/yyyy")}
             </p>

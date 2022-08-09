@@ -34,7 +34,7 @@ function HomePage() {
         for (let j = 0; j < user.lists[i].items.length; j++) {
           if (
             getDaysBeforeExpiration(user.lists[i].items[j]) > 0 &&
-            getDaysBeforeExpiration(user.lists[i].items[j]) <= 10
+            getDaysBeforeExpiration(user.lists[i].items[j]) <= 7
           ) {
             listObj.products.push(user.lists[i].items[j]);
           }
