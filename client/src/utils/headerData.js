@@ -1,5 +1,5 @@
 import HomeIcon from "@material-ui/icons/Home";
-import QueueIcon from "@material-ui/icons/Queue";
+import PersonIcon from "@material-ui/icons/Person";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import GridOnIcon from "@material-ui/icons/GridOn";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -13,22 +13,16 @@ const headerData = [
     href: "/",
   },
   {
-    intlId: "header.comp.add",
-    defaultMsg: "Add Product",
-    icon: <QueueIcon />,
-    href: "/product",
-  },
-  {
-    intlId: "header.comp.products",
-    defaultMsg: "My Products",
-    icon: <ShoppingCartIcon />,
-    href: `/user/products`,
-  },
-  {
     intlId: "header.comp.lists",
     defaultMsg: "My Lists",
     icon: <AssignmentIcon />,
     href: `/user/lists`,
+  },
+  {
+    intlId: "header.comp.shopping",
+    defaultMsg: "My Products",
+    icon: <ShoppingCartIcon />,
+    href: `/user/products`,
   },
   {
     intlId: "header.comp.reports",
@@ -38,8 +32,8 @@ const headerData = [
   },
   {
     intlId: "home.page.tile.language",
-    defaultMsg: "Reports",
-    icon: <LanguageIcon />,
+    defaultMsg: "Profile",
+    icon: <PersonIcon />,
     href: `/user/language`,
   },
 ];
