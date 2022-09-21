@@ -3,7 +3,6 @@ import PersonIcon from "@material-ui/icons/Person";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import GridOnIcon from "@material-ui/icons/GridOn";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import LanguageIcon from "@material-ui/icons/Language";
 
 const headerData = [
   {

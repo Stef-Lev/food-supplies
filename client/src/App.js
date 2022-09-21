@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { IntlProvider } from "react-intl";
 import HomePage from "./routes/HomePage/HomePage";
 import LoginPage from "./routes/LoginPage/LoginPage";
 import PrivateRoutePage from "./routes/PrivateRoutePage/PrivateRoutePage";
@@ -20,11 +19,10 @@ import Container from "@material-ui/core/Container";
 import { UserContext } from "./context/UserContext";
 import useFindUser from "./utils/useFindUser";
 import { MessageProvider } from "./context/MessageContext";
-import useStorageLocale from "./utils/useStorageLocale";
+import { LanguageProvider } from "./context/LanguageContext";
 
 function App() {
   const { user, setUser, isLoading } = useFindUser();
-  const { storageLocale, messages } = useStorageLocale();
 
   console.log("USER_CONTEXT", user);
 
@@ -32,7 +30,7 @@ function App() {
     <div className="App">
       <Router>
         <UserContext.Provider value={{ user, setUser, isLoading }}>
-          <IntlProvider locale={storageLocale} messages={messages}>
+          <LanguageProvider>
             <MessageProvider>
               {user && <Header />}
               <Container maxWidth="sm" className="main-container">
@@ -140,7 +138,7 @@ function App() {
               </Container>
               <Intro />
             </MessageProvider>
-          </IntlProvider>
+          </LanguageProvider>
         </UserContext.Provider>
       </Router>
     </div>
