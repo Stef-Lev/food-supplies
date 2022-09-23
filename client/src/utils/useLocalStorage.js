@@ -7,7 +7,7 @@ function useLocalStorage(key, defaultVal) {
         window.localStorage.getItem(key) || String(defaultVal)
       );
     } catch (e) {
-      value = navigator.language || defaultVal;
+      value = defaultVal;
     }
     return value;
   });

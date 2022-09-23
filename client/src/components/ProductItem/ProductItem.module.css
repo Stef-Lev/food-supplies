@@ -1,15 +1,18 @@
+.product_item_container {
+  border-radius: 18px;
+  padding: 8px 16px;
+  background-color: #fff;
+  box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
+}
+
 .product_item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 18px;
-  padding: 8px 16px;
-  background-color: #fff;
   color: #064960;
   text-align: left;
-  box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0px 6px 5px -5px rgba(0, 0, 0, 0.5);
 }
 
 .product_title {

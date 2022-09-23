@@ -18,11 +18,13 @@ import Header from "./components/Header/Header";
 import Container from "@material-ui/core/Container";
 import { UserContext } from "./context/UserContext";
 import useFindUser from "./utils/useFindUser";
+import useShowIntro from "./utils/useShowIntro";
 import { MessageProvider } from "./context/MessageContext";
 import { LanguageProvider } from "./context/LanguageContext";
 
 function App() {
   const { user, setUser, isLoading } = useFindUser();
+  const { showIntro } = useShowIntro();
 
   console.log("USER_CONTEXT", user);
 
@@ -136,7 +138,7 @@ function App() {
                   />
                 </Routes>
               </Container>
-              <Intro />
+              {showIntro && <Intro />}
             </MessageProvider>
           </LanguageProvider>
         </UserContext.Provider>

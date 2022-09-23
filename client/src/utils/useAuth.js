@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import useShowIntro from "./useShowIntro";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { fetchMethod } from "./fetchMethod";
@@ -7,11 +8,13 @@ export default function useAuth() {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
   const [error, setError] = useState(null);
+  const { setShowIntro } = useShowIntro();
 
   const setUserContext = async () => {
     return await fetchMethod("get", "/api/auth/user")
       .then((res) => {
         setUser(res.currentUser);
+        setShowIntro(true);
         navigate("/");
       })
       .catch((err) => {
